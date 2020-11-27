@@ -2,6 +2,7 @@
 	import NumbersBoard from "./components/NumbersBoard.svelte";
 	import ActionsBoard from "./components/ActionsBoard.svelte";
 	import GameStore, {GAME_STATE} from "./store/gameStore";
+	import Button from "./components/Button.svelte";
 
 	const onLoadLevel = (levelIndex) => () => GameStore.loadLevel(levelIndex);
 
@@ -13,12 +14,14 @@
 
 	{#if $GameStore.gameState === GAME_STATE.WIN}
 		<h3>Well done</h3>
-		<button on:click={onLoadLevel($GameStore.levelIndex++)}>Next level</button>
+		<Button on:click={onLoadLevel($GameStore.levelIndex++)}>Next level</Button>
 	{:else if $GameStore.gameState === GAME_STATE.LOSE}
 		<h3>Maybe the next time</h3>
-		<button on:click={onLoadLevel($GameStore.levelIndex)}>Try again</button>
+		<Button on:click={onLoadLevel($GameStore.levelIndex)}>Try again</Button>
+	{:else}
+		<Button on:click={onLoadLevel($GameStore.levelIndex)}>Restart</Button>
 	{/if}
-	
+
 	<NumbersBoard />
 	<ActionsBoard />
 </main>

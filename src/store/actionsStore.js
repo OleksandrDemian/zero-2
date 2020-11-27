@@ -2,12 +2,7 @@ import {writable} from "svelte/store";
 import NumbersStore from "./numbersStore";
 import {createAction, DIV, MULT, SUB, SUM} from "../game/action";
 
-const { set, update, subscribe } = writable([
-	createAction(SUM, 5),
-	createAction(SUB, 3),
-	createAction(MULT, 6),
-	createAction(DIV, 2),
-]);
+const { set, update, subscribe } = writable([]);
 
 const useAction = (action) => {
 	if(!action.used) {

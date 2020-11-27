@@ -4,7 +4,7 @@
 </script>
 
 <div class="container">
-	<h3>Numbers</h3>
+	<p><b>Numbers</b></p>
 	<div class="numbers-container">
 		{ #each $NumbersStore as number }
 			<Number number={number} />

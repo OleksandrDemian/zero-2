@@ -4,11 +4,11 @@
 </script>
 
 <div class="container">
-	<h3>Actions</h3>
+	<p><b>Actions</b></p>
 	<div class="actions-container">
-        { #each $ActionsStore as action }
+		{ #each $ActionsStore as action }
 			<Action action={action} />
-        {/each}
+		{/each}
 	</div>
 </div>
 
