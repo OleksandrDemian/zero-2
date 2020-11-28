@@ -1,33 +1,33 @@
 <script>
-	import NumbersBoard from "./components/game/NumbersBoard.svelte";
-	import ActionsBoard from "./components/game/ActionsBoard.svelte";
-	import GameStore, {GAME_STATE} from "./store/gameStore";
+	import GameStore from "./store/gameStore";
 	import Button from "./components/Button.svelte";
+	import Campaign from "./views/Campaign.svelte";
+	import Random from "./views/Random.svelte";
 
-	const onLoadLevel = (levelIndex) => () => GameStore.loadLevel(levelIndex);
-
-	GameStore.loadLevel(1);
+	const startCampaign = () => GameStore.setMode("campaign");
+	const startRandom = () => GameStore.setMode("random");
+	const goHome = () => GameStore.setMode(null);
 </script>
 
 <main>
-	<h1>Zero.2</h1>
-	<div class="level-head">
-		<h2>{$GameStore.title}</h2>
-		{#if $GameStore.gameState === GAME_STATE.WIN}
-			<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green">Next level</Button>
-		{:else if $GameStore.gameState === GAME_STATE.LOSE}
-			<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red">Try again</Button>
-		{:else}
-			<Button on:click={onLoadLevel($GameStore.levelIndex)}>Restart</Button>
-		{/if}
-	</div>
+	<header>
+		<h1>Zero.2</h1>
+		<Button on:click={goHome}>Go home</Button>
+	</header>
 
-	<NumbersBoard />
-	<ActionsBoard />
+	{ #if $GameStore.mode === "campaign"}
+		<Campaign />
+	{:else if $GameStore.mode === "random"}
+		<Random />
+	{:else}
+		<Button on:click={startCampaign} colorScheme="red">Play campaign</Button>
+		<div class="separator"></div>
+		<Button on:click={startRandom} colorScheme="green">Play random</Button>
+	{/if}
 </main>
 
 <style>
-	div.level-head {
+	header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -49,15 +49,7 @@
 		margin-right: auto;
 	}
 
-	div.levels {
-		display: flex;
-	}
-
-	div.levels > button {
-		margin-right: 5px;
-	}
-
-	button {
-		cursor: pointer;
+	div.separator {
+		height: 25px;
 	}
 </style>
