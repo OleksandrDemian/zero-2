@@ -5,7 +5,7 @@
 </script>
 
 <Board title="Numbers">
-	{ #each $NumbersStore as number }
+	{ #each $NumbersStore as number, i }
 		<Number number={number} />
 	{/each}
 </Board>

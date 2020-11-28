@@ -27,7 +27,13 @@
 
 		transition: all var(--animation-speed) ease-in-out;
 		margin: 5px;
-		background-color: var(--board-item-background-color);
+		padding: 0 5px;
+		background-color: var(--action-background-color);
+	}
+
+	div.container:not(.used):hover {
+		transform: translateY(-3px);
+		box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);
 	}
 
 	div.container.used {
@@ -37,6 +43,6 @@
 	span.value {
 		font-weight: bold;
 		font-size: 25px;
-		color: var(--board-item-text-color);
+		color: var(--action-text-color);
 	}
 </style>

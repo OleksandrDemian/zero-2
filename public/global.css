@@ -1,15 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
 
 :root {
+	--green: #2A9D8F;
+	--red: #E76F51;
+	--blue: #264653;
+	--yellow: #E9C46A;
+	--orange: #F4A261;
+
 	--border-radius: 10px;
 	--animation-speed: 0.1s;
 
-	--text-color: #1c1800;
-	--background-color: #f3ece4;
+	--text-color: #1C1800;
+	--background-color: #FFFFFC;
 	--board-background-color: transparent;
-	--board-item-background-color: #1c1800;
-	--board-item-text-color: #f3ece4;
-	--active-number-border-color: coral;
+
+	--action-text-color: #FFFFFC;
+	--action-background-color: var(--blue);
+
+	--number-text-color: #FFFFFC;
+	--number-background-color: var(--orange);
 
 	--board-item-size: 75px;
 }
@@ -56,7 +65,6 @@ input, button, select, textarea {
 	font-size: inherit;
 	-webkit-padding: 0.4em 0;
 	padding: 0.4em;
-	margin: 0 0 0.5em 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
@@ -83,3 +91,25 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+/*
+[color-scheme="dark-pink"] {
+	--board-item-background-color: #264653;
+}
+
+[color-scheme="fluorescent-orange"] {
+	--board-item-background-color: #2a9d8f;
+}
+
+[color-scheme="lemon-yellow"] {
+	--board-item-background-color: #e9c46a;
+}
+
+[color-scheme="willow"] {
+	--board-item-background-color: #f4a261;
+}
+
+[color-scheme="phthalo-blue"] {
+	--board-item-background-color: #e76f51;
+}
+ */

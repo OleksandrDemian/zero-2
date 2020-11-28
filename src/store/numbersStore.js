@@ -40,6 +40,9 @@ const applyAction = (action) => {
 						break;
 				}
 			}
+			if(n.value === 0) {
+			n.selected = false;
+			}
 			
 			newNumbers.push(n);
 		}

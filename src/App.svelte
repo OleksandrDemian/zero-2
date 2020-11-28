@@ -10,23 +10,29 @@
 </script>
 
 <main>
-	<h1>Zero.2 - {$GameStore.title}</h1>
-
-	{#if $GameStore.gameState === GAME_STATE.WIN}
-		<h3>Well done</h3>
-		<Button on:click={onLoadLevel($GameStore.levelIndex++)}>Next level</Button>
-	{:else if $GameStore.gameState === GAME_STATE.LOSE}
-		<h3>Maybe the next time</h3>
-		<Button on:click={onLoadLevel($GameStore.levelIndex)}>Try again</Button>
-	{:else}
-		<Button on:click={onLoadLevel($GameStore.levelIndex)}>Restart</Button>
-	{/if}
+	<h1>Zero.2</h1>
+	<div class="level-head">
+		<h2>{$GameStore.title}</h2>
+		{#if $GameStore.gameState === GAME_STATE.WIN}
+			<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green">Next level</Button>
+		{:else if $GameStore.gameState === GAME_STATE.LOSE}
+			<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red">Try again</Button>
+		{:else}
+			<Button on:click={onLoadLevel($GameStore.levelIndex)}>Restart</Button>
+		{/if}
+	</div>
 
 	<NumbersBoard />
 	<ActionsBoard />
 </main>
 
 <style>
+	div.level-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	@media screen and (max-width: 768px) {
 		main {
 			padding: 45px;
