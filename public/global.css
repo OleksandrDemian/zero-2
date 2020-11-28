@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap');
+
 :root {
 	--border-radius: 10px;
 	--animation-speed: 0.1s;
+
+	--text-color: #1c1800;
+	--background-color: #f3ece4;
+	--board-background-color: transparent;
+	--board-item-background-color: #1c1800;
+	--board-item-text-color: #f3ece4;
+	--active-number-border-color: coral;
+
+	--board-item-size: 75px;
 }
 
 * {
@@ -14,11 +25,13 @@ html, body {
 }
 
 body {
-	color: #333;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: 'Roboto Mono', monospace;
+
+	background-color: var(--background-color);
+	color: var(--text-color);
 }
 
 a {

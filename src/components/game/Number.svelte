@@ -1,5 +1,5 @@
 <script>
-	import NumbersStore from "../store/numbersStore";
+	import NumbersStore from "../../store/numbersStore";
 
 	export let number;
 
@@ -19,10 +19,9 @@
 		justify-content: center;
 		align-items: center;
 
-		width: 100px;
-		height: 75px;
+		width: var(--board-item-size);
+		height: var(--board-item-size);
 
-		box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 		border-radius: var(--border-radius);
 
 		cursor: pointer;
@@ -30,13 +29,17 @@
 		transition: all var(--animation-speed) ease-in-out;
 		margin: 5px;
 
-		border: 2px solid transparent;
+		border: 2px solid var(--board-item-background-color);
+		background-color: transparent;
+		color: var(--board-item-background-color);
 	}
 
 	div.container.active {
-		border: 2px solid coral;
-		box-shadow: 0 4px 6px 0 rgba(32, 33, 36, .28);
-		transform: translateY(-3px);
+		transform: translateY(-5px);
+		box-shadow: 0 5px 0 0 rgba(28, 24, 0, 0.2);
+		background-color: var(--board-item-background-color);
+		border: 2px solid transparent;
+		color: var(--board-item-text-color);
 	}
 
 	span.value {

@@ -1,5 +1,5 @@
 <script>
-	import ActionsStore from "../store/actionsStore";
+	import ActionsStore from "../../store/actionsStore";
 
 	export let action;
 
@@ -18,25 +18,25 @@
 		justify-content: center;
 		align-items: center;
 
-		width: 100px;
-		height: 75px;
+		min-width: var(--board-item-size);
+		height: var(--board-item-size);
 
-		box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 		border-radius: var(--border-radius);
 
 		cursor: pointer;
 
 		transition: all var(--animation-speed) ease-in-out;
 		margin: 5px;
+		background-color: var(--board-item-background-color);
 	}
 
 	div.container.used {
-		background-color: #202124;
-		color: white;
+		opacity: 0.3;
 	}
 
 	span.value {
 		font-weight: bold;
 		font-size: 25px;
+		color: var(--board-item-text-color);
 	}
 </style>

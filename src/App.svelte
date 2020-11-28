@@ -1,6 +1,6 @@
 <script>
-	import NumbersBoard from "./components/NumbersBoard.svelte";
-	import ActionsBoard from "./components/ActionsBoard.svelte";
+	import NumbersBoard from "./components/game/NumbersBoard.svelte";
+	import ActionsBoard from "./components/game/ActionsBoard.svelte";
 	import GameStore, {GAME_STATE} from "./store/gameStore";
 	import Button from "./components/Button.svelte";
 
