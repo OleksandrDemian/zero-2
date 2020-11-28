@@ -6,7 +6,7 @@
 
 	const onLoadLevel = (levelIndex) => () => GameStore.loadLevel(levelIndex);
 
-	GameStore.loadLevel(0);
+	GameStore.loadLevel(1);
 </script>
 
 <main>

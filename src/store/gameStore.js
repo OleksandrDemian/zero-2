@@ -1,5 +1,5 @@
 import {writable} from "svelte/store";
-import LEVELS from "../data/levels";
+import LEVELS, {createLevel} from "../data/levels";
 import NumbersStore from "./numbersStore";
 import ActionsStore from "./actionsStore";
 
@@ -10,13 +10,31 @@ export const GAME_STATE = {
 };
 
 const { set, update, subscribe } = writable({
-	levelIndex: 0,
+	levelIndex: null,
 	title: "🤡",
-	gameState: GAME_STATE.IN_PROGRESS
+	gameState: GAME_STATE.IN_PROGRESS,
+	levelPref: null
 });
 
+const storeHelper = {
+	levelIndex: null,
+	levelPref: null
+};
+
 const loadLevel = (levelIndex) => {
-	const level = LEVELS[levelIndex];
+	let level = null;
+	
+	if(storeHelper.levelIndex !== levelIndex){
+		level = LEVELS[levelIndex];
+		if(level == null){
+			level = createLevel({ difficulty: levelIndex });
+		}
+		
+		storeHelper.levelPref = level;
+		storeHelper.levelIndex = levelIndex;
+	} else {
+		level = storeHelper.levelPref;
+	}
 	
 	update(() => ({
 		levelIndex,
