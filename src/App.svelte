@@ -24,12 +24,11 @@
 	{:else if $GameStore.mode === "random"}
 		<Random />
 	{:else}
-		<Button on:click={startCampaign} colorScheme="red">Play campaign</Button>
+		<Button on:click={startCampaign} colorScheme="red" size="medium">Play campaign</Button>
 		<div class="separator"></div>
-		<Button on:click={startRandom} colorScheme="green">Play random</Button>
+		<Button on:click={startRandom} colorScheme="green" size="medium">Play random</Button>
+		<PwaInstallButton />
 	{/if}
-
-	<PwaInstallButton />
 </main>
 
 <style>

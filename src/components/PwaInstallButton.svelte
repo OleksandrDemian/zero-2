@@ -17,5 +17,13 @@
 </script>
 
 { #if $PwaInstallableStore.installable }
-	<Button colorScheme="green" on:click={onInstall}>Install PWA</Button>
+	<h3>Install</h3>
+	<span>You can get "native-like" behaviour by installing it as PWA. PWA will offer you the following benefits:</span>
+	<ul>
+		<li>No more annoying top-bar</li>
+		<li>Offline play</li>
+		<li>Launch as native app (from menu)</li>
+	</ul>
+
+	<Button colorScheme="green" on:click={onInstall} size="medium">Install PWA</Button>
 {/if}

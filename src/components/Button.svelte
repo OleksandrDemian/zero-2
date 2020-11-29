@@ -1,8 +1,9 @@
 <script>
 	export let colorScheme = "default";
+	export let size = "default";
 </script>
 
-<button on:click color-scheme={colorScheme}>
+<button on:click color-scheme={colorScheme} size={size}>
 	<slot></slot>
 </button>
 
@@ -11,7 +12,6 @@
 		cursor: pointer;
 		border-radius: var(--border-radius);
 		border: none;
-		padding: 5px 15px;
 		transition: all var(--animation-speed) ease-in-out;
 	}
 
@@ -61,5 +61,19 @@
 	[color-scheme="orange"] {
 		background-color: var(--orange);
 		color: white;
+	}
+
+	[size="default"] {
+		padding: 5px 15px;
+	}
+
+	[size="medium"] {
+		padding: 8px 24px;
+		font-size: 1.2em;
+	}
+
+	[size="big"] {
+		padding: 10px 30px;
+		font-size: 1.5em;
 	}
 </style>
