@@ -1,7 +1,7 @@
 {
 	"short_name": "Zero.2",
-	"name": "Zero, the second",
+	"name": "Zero.2",
 	"start_url": "/index.html",
-	"display": "standalone",
-	"orientation": "landscape"
+	"display": "fullscreen",
+	"orientation": "portrait"
 }
