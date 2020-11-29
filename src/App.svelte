@@ -3,6 +3,7 @@
 	import Button from "./components/Button.svelte";
 	import Campaign from "./views/Campaign.svelte";
 	import Random from "./views/Random.svelte";
+	import PwaInstallButton from "./components/PwaInstallButton.svelte";
 
 	const startCampaign = () => GameStore.setMode("campaign");
 	const startRandom = () => GameStore.setMode("random");
@@ -27,6 +28,8 @@
 		<div class="separator"></div>
 		<Button on:click={startRandom} colorScheme="green">Play random</Button>
 	{/if}
+
+	<PwaInstallButton />
 </main>
 
 <style>

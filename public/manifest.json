@@ -3,5 +3,18 @@
 	"name": "Zero.2",
 	"start_url": "/index.html",
 	"display": "fullscreen",
-	"orientation": "portrait"
+	"orientation": "portrait",
+	
+	"icons": [
+		{
+			"src": "/logo/w-192-logo.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/logo/logo.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
 }
