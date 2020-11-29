@@ -1,5 +1,5 @@
 <script>
-	import NumbersStore from "../../store/numbersStore";
+	import NumbersStore from "../../store/runtime/numbersStore";
 
 	export let number;
 	export let colorScheme = "--";

@@ -1,6 +1,6 @@
 import {writable} from "svelte/store";
-import {DIV, MULT, SUB, SUM} from "../game/action";
-import {createNumber} from "../game/number";
+import {DIV, MULT, SUB, SUM} from "../../game/action";
+import {createNumber} from "../../game/number";
 
 const {set, update, subscribe} = writable([]);
 

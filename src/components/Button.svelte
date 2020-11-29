@@ -20,6 +20,18 @@
 		box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);
 	}
 
+	button:not(:disabled):active {
+		opacity: 0.8;
+	}
+
+	button:disabled {
+		color: #999;
+	}
+
+	button:focus {
+		border-color: #666;
+	}
+
 	[color-scheme="default"] {
 		background-color: white;
 		color: var(--text-color);

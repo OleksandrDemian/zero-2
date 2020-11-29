@@ -1,10 +1,12 @@
 import {writable} from "svelte/store";
-import LEVELS from "../data/levels";
+import LEVELS from "../../data/levels";
 import NumbersStore from "./numbersStore";
 import ActionsStore from "./actionsStore";
-import {createLevel} from "../utils/levelGenerator";
+import {createLevel} from "../../utils/levelGenerator";
+import PersistentStore, {LEVEL_INDEX, REACHED_LEVEL} from "../persistant/persistentStore";
 
 export const GAME_STATE = {
+	NONE: -1,
 	IN_PROGRESS: 0,
 	WIN: 1,
 	LOSE: 2,
@@ -24,28 +26,18 @@ const storeHelper = {
 	levelPref: null
 };
 
-const loadLastLevel = () => {
-	let levelIndex = localStorage.getItem("levelIndex");
-	
-	try {
-		levelIndex = parseInt(levelIndex, 10);
-		if(isNaN(levelIndex))
-			return 0;
-		else
-			return levelIndex;
-	} catch (e) {
-		return 0;
-	}
-};
-
 const loadLevel = (levelIndex) => {
 	let level = null;
 	
 	if(levelIndex == null){
-		levelIndex = loadLastLevel();
+		levelIndex = PersistentStore.get(LEVEL_INDEX);
+	} else {
+		PersistentStore.set(LEVEL_INDEX, levelIndex);
+		if(levelIndex > PersistentStore.get(REACHED_LEVEL)){
+			PersistentStore.set(REACHED_LEVEL, levelIndex);
+		}
+		PersistentStore.save();
 	}
-	
-	localStorage.setItem("levelIndex", levelIndex);
 	
 	if(storeHelper.levelIndex !== levelIndex){
 		level = LEVELS[levelIndex];
@@ -130,13 +122,15 @@ const checkLose = (actions) => {
 };
 
 const setMode = (mode) => update(state => ({...state, mode }));
+const setState = (gameState) => update(state => ({...state, gameState }));
 
 const GameStore = {
 	subscribe,
 	
 	loadLevel,
 	createRandomLevel,
-	setMode
+	setMode,
+	setState
 };
 
 NumbersStore.subscribe(checkVictory);

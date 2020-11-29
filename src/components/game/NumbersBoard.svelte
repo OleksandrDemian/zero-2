@@ -1,6 +1,6 @@
 <script>
 	import Number from "./Number.svelte";
-	import NumbersStore from "../../store/numbersStore";
+	import NumbersStore from "../../store/runtime/numbersStore";
 	import Board from "../containers/Board.svelte";
 </script>
 

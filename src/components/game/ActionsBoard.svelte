@@ -1,6 +1,6 @@
 <script>
 	import Action from "./Action.svelte";
-	import ActionsStore from "../../store/actionsStore";
+	import ActionsStore from "../../store/runtime/actionsStore";
 	import Board from "../containers/Board.svelte";
 </script>
 

@@ -1,5 +1,5 @@
 <script>
-	import GameStore from "./store/gameStore";
+	import GameStore from "./store/runtime/gameStore";
 	import Button from "./components/Button.svelte";
 	import Campaign from "./views/Campaign.svelte";
 	import Random from "./views/Random.svelte";
@@ -12,7 +12,10 @@
 <main>
 	<header>
 		<h1>Zero.2</h1>
-		<Button on:click={goHome}>Go home</Button>
+
+		{ #if $GameStore.mode !== null}
+			<Button on:click={goHome}>Go home</Button>
+		{/if}
 	</header>
 
 	{ #if $GameStore.mode === "campaign"}

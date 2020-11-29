@@ -1,5 +1,5 @@
 <script>
-	import ActionsStore from "../../store/actionsStore";
+	import ActionsStore from "../../store/runtime/actionsStore";
 
 	export let action;
 
