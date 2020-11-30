@@ -19,10 +19,8 @@
 </script>
 
 <div class="container">
-	<h3>Select level</h3>
-
 	{ #each GROUPS as group }
-		<h4>{levels[group].title}</h4>
+		<h3>{levels[group].title}</h3>
 		{ #each levels[group].levels as level, i }
 			<LevelItem on:click={triggerLevel(level.index)} level={level} done={reachedLevel > level.index} active={reachedLevel === level.index} />
 		{/each}

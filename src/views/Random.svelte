@@ -1,6 +1,6 @@
 <script>
 	import GameStore from "../store/runtime/gameStore";
-	import Game from "../components/game/Game.svelte";
+	import SimpleGame from "../components/game/SimpleGame.svelte";
 	import DIFFICULTIES from "../data/difficultySettings";
 	import Button from "../components/Button.svelte";
 	import Separator from "../components/Separator.svelte";
@@ -31,5 +31,5 @@
 	<Separator />
 	<Button on:click={initDifficultyListener(DIFFICULTIES.HARD)} colorScheme="red" size="medium">Hard</Button>
 {:else}
-	<Game on:level={onLevel} />
+	<SimpleGame on:level={onLevel} />
 {/if}

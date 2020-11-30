@@ -10,7 +10,7 @@
 </script>
 
 <div class="level-head">
-	<h2>Level {$GameStore.title}</h2>
+	<h3>Level {$GameStore.title}</h3>
     {#if $GameStore.gameState === GAME_STATE.WIN}
 		<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green">Next level</Button>
     {:else if $GameStore.gameState === GAME_STATE.LOSE}

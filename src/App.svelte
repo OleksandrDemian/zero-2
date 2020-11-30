@@ -4,9 +4,12 @@
 	import Campaign from "./views/Campaign.svelte";
 	import Random from "./views/Random.svelte";
 	import PwaInstallButton from "./components/PwaInstallButton.svelte";
+	import Separator from "./components/Separator.svelte";
+	import TimeAttack from "./views/TimeAttack.svelte";
 
 	const startCampaign = () => GameStore.setMode("campaign");
 	const startRandom = () => GameStore.setMode("random");
+	const startTimeAttack = () => GameStore.setMode("time-attack");
 	const goHome = () => GameStore.setMode(null);
 </script>
 
@@ -15,7 +18,7 @@
 		<h1>Zero.2</h1>
 
 		{ #if $GameStore.mode !== null}
-			<Button on:click={goHome}>Go home</Button>
+			<Button colorScheme="red" on:click={goHome}>Go home</Button>
 		{/if}
 	</header>
 
@@ -23,10 +26,15 @@
 		<Campaign />
 	{:else if $GameStore.mode === "random"}
 		<Random />
+	{:else if $GameStore.mode === "time-attack"}
+		<TimeAttack />
 	{:else}
 		<Button on:click={startCampaign} colorScheme="red" size="medium">Play campaign</Button>
-		<div class="separator"></div>
-		<Button on:click={startRandom} colorScheme="green" size="medium">Play random</Button>
+		<Separator />
+		<Button on:click={startRandom} colorScheme="orange" size="medium">Play random</Button>
+		<Separator />
+		<Button on:click={startTimeAttack} colorScheme="green" size="medium">Play time attack</Button>
+		<Separator />
 		<PwaInstallButton />
 	{/if}
 </main>
@@ -52,9 +60,5 @@
 
 		margin-left: auto;
 		margin-right: auto;
-	}
-
-	div.separator {
-		height: 25px;
 	}
 </style>
