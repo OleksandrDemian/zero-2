@@ -42,7 +42,7 @@
 
 	span.value {
 		font-weight: bold;
-		font-size: 25px;
+		font-size: var(--board-item-font-size);
 		color: var(--action-text-color);
 	}
 </style>

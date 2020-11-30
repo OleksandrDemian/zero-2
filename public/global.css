@@ -21,6 +21,15 @@
 	--number-background-color: var(--orange);
 
 	--board-item-size: 75px;
+	--board-item-font-size: 1.6em;
+}
+
+/* MOBILE VARIABLES */
+@media screen and (max-width: 768px) {
+	:root {
+		--board-item-size: 55px;
+		--board-item-font-size: 1.3em;
+	}
 }
 
 * {

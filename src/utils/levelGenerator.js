@@ -3,7 +3,7 @@ import {mustDo, random, shuffleArray} from "./random";
 
 const getRandomAction = ({ numbers, settings }) => {
 	const allowedActions = [SUM, SUB];
-	let value = getRandomValue(settings.maxActionValue);
+	let value = random(settings.minActionValue, settings.maxActionValue);
 	
 	let allowDivision = settings.allowDivision;
 	let allowMultiplication = settings.allowMultiplication;
@@ -46,10 +46,6 @@ const applyAction = (number, value, action) => {
 	}
 };
 
-const getRandomValue = (max = 20) => {
-	return random(1, max);
-};
-
 const printSolution = (levelName, solutions) => {
 	console.log(levelName + " solution:");
 	for(let i = solutions.length-1; i>= 0; i--){
@@ -57,29 +53,32 @@ const printSolution = (levelName, solutions) => {
 	}
 };
 
-const DEFAULT_GENERATION_SETTINGS = ({ difficulty }) => ({
-	maxActionValue: 12,
+const DEFAULT_GENERATION_SETTINGS = () => ({
+	minActionValue: 1,
+	maxActionValue: 10,
 	allowMultiplication: false,
 	allowDivision: true,
 	maxNumbers: 4,
 	
-	actions: difficulty + 1,
-	maxActions: 10
+	name: "Generated",
+	
+	minActions: 2,
+	maxActions: 6
 });
 
-export const createLevel = (index, settings) => {
-	settings = Object.assign({}, DEFAULT_GENERATION_SETTINGS({ difficulty: index }), settings || {});
+export const createLevel = (settings, controlValue = 0) => {
+	if(controlValue > 5){
+		throw "Cannot create new levels!";
+	}
+	
+	settings = Object.assign({}, DEFAULT_GENERATION_SETTINGS(), settings || {});
 	
 	const numbersCount = random(1, settings.maxNumbers+1);
-	let cycles = settings.actions;
-	
-	if(cycles > settings.maxActions){
-		cycles = settings.maxActions;
-	}
+	const cycles = random(settings.minActions, settings.maxActions+1);
 	
 	const numbers = [];
 	const actions = [];
-	const name = "Level G-" + index;
+	const name = settings.name;
 	const solution = [];
 	
 	for(let i = 0; i < numbersCount; i++){
@@ -129,7 +128,7 @@ export const createLevel = (index, settings) => {
 	
 	if(validNumbers.length === 0) {
 		//alert && alert("EMPTY LEVEL: this is dev warning, ignore it, level will be recreated");
-		return createLevel(index, settings);
+		return createLevel(settings, controlValue++);
 	}
 	
 	return {

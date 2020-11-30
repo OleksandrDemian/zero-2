@@ -58,6 +58,6 @@
 
 	span.value {
 		font-weight: bold;
-		font-size: 25px;
+		font-size: var(--board-item-font-size);
 	}
 </style>

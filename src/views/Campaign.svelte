@@ -8,6 +8,7 @@
 	};
 
 	GameStore.setState(GAME_STATE.NONE);
+	GameStore.resetLevelIndex();
 </script>
 
 {#if $GameStore.gameState === GAME_STATE.NONE}

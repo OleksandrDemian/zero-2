@@ -70,11 +70,14 @@ const loadLevel = (levelIndex) => {
 	ActionsStore.init(level.actions);
 };
 
-const createRandomLevel = (levelIndex) => {
+const createRandomLevel = (levelIndex, settings) => {
 	let level = null;
 	
 	if(storeHelper.levelIndex !== levelIndex){
-		level = createLevel(levelIndex);
+		level = createLevel({
+			...settings,
+			name: "G-" + levelIndex
+		});
 		
 		storeHelper.levelIndex = levelIndex;
 		storeHelper.levelPref = level;
@@ -121,14 +124,21 @@ const checkLose = (actions) => {
 	}
 };
 
+const updateLevelIndex = (index) => {
+	storeHelper.levelIndex = index;
+	update(state => ({...state, levelIndex: index }));
+};
+
 const setMode = (mode) => update(state => ({...state, mode }));
 const setState = (gameState) => update(state => ({...state, gameState }));
+const resetLevelIndex = () => updateLevelIndex(-1);
 
 const GameStore = {
 	subscribe,
 	
 	loadLevel,
 	createRandomLevel,
+	resetLevelIndex,
 	setMode,
 	setState
 };
