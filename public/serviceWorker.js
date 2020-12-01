@@ -1,14 +1,15 @@
-const cacheName = "cache-v5";
+const cacheName = "cache-v6";
 
 const contentToCache = [
 	"/icons/favicon.ico",
+	"/icons/close.svg",
 	"/logo/logo.png",
 	"/logo/w-192-logo.png",
 	"/global.css",
 	"/index.html",
 	"/manifest.json",
 	"/build/bundle.css",
-	"/build/bundle.js",
+	"/build/bundle.js"
 ];
 
 self.addEventListener('install', (e) => {

@@ -36,7 +36,7 @@
 	box-sizing: border-box;
 }
 
-html, body {
+body {
 	position: relative;
 	width: 100%;
 	min-height: 80vh;
@@ -72,7 +72,6 @@ label {
 input, button, select, textarea {
 	font-family: inherit;
 	font-size: inherit;
-	-webkit-padding: 0.4em 0;
 	padding: 0.4em;
 	box-sizing: border-box;
 	border: 1px solid #ccc;

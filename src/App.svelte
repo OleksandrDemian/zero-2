@@ -6,12 +6,16 @@
 	import PwaInstallButton from "./components/PwaInstallButton.svelte";
 	import Separator from "./components/Separator.svelte";
 	import TimeAttack from "./views/TimeAttack.svelte";
+	import PopUpManager from "./components/popUp/SnackBar.svelte";
+	import SnackBarStore from "./store/runtime/snackBarStore";
 
 	const startCampaign = () => GameStore.setMode("campaign");
 	const startRandom = () => GameStore.setMode("random");
 	const startTimeAttack = () => GameStore.setMode("time-attack");
 	const goHome = () => GameStore.setMode(null);
 </script>
+
+<PopUpManager />
 
 <main>
 	<header>
