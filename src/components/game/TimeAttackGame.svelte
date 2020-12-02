@@ -5,6 +5,7 @@
 	import Button from "../../components/Button.svelte";
 	import {onDestroy} from "svelte";
 	import DIFFICULTIES from "../../data/difficultySettings";
+	import ProgressBar from "../ProgressBar.svelte";
 
 	const STAGES = [
 		{
@@ -48,14 +49,15 @@
 
 			stop();
 		} else if (isPlaying && value.gameState === GAME_STATE.LOSE) {
-			gameOver();
+			level--;
+			stop();
+			start();
 		}
 	});
 
 	const start = () => {
 		level++;
 
-		console.log(level, STAGES[stage].levels);
 		if (level > STAGES[stage].levels) {
 			level = 1;
 			stage++;
@@ -108,12 +110,14 @@
 {:else if $GameStore.gameState === GAME_STATE.WIN}
 	<h1 class="center green">Level clear</h1>
 	<h3 class="center">Time crown is nearer with each stage.</h3>
-	<p class="center green">Bonus +{STAGES[stage].bonus} seconds</p>
 
+	<ProgressBar fill={stage*4+level} />
+
+	<p class="center green">Bonus +{STAGES[stage].bonus} seconds</p>
 	<Button on:click={start} size="medium" colorScheme="green">Next level</Button>
 {:else if $GameStore.gameState === GAME_STATE.LOSE}
 	<h1 class="center red">Game over</h1>
-	<h3 class="center">You didn't manage to become time king. Maybe the next time.</h3>
+	<h3 class="center">You didn't manage to become the time king. Maybe the next time.</h3>
 	<Button colorScheme="red" size="medium" on:click={() => GameStore.setMode(null)}>Go home</Button>
 {/if}
 

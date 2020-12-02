@@ -1,31 +1,31 @@
 export const DIFFICULTY_EASY = Object.freeze({
-	maxActionValue: 8,
+	maxActionValue: 6,
 	allowMultiplication: false,
 	allowDivision: false,
-	maxNumbers: 3,
+	maxNumbers: 2,
 	
 	minActions: 1,
-	maxActions: 4
+	maxActions: 3
 });
 
 export const DIFFICULTY_MEDIUM = Object.freeze({
-	maxActionValue: 12,
+	maxActionValue: 10,
 	allowMultiplication: false,
 	allowDivision: true,
-	maxNumbers: 5,
+	maxNumbers: 4,
 	
-	minActions: 3,
-	maxActions: 6
+	minActions: 2,
+	maxActions: 5
 });
 
 export const DIFFICULTY_HARD = Object.freeze({
-	maxActionValue: 16,
+	maxActionValue: 12,
 	allowMultiplication: true,
 	allowDivision: true,
-	maxNumbers: 5,
+	maxNumbers: 4,
 	
-	minActions: 4,
-	maxActions: 8
+	minActions: 3,
+	maxActions: 6
 });
 
 const DIFFICULTIES = Object.freeze({
