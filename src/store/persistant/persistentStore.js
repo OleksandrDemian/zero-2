@@ -1,5 +1,6 @@
 export const LEVEL_INDEX = "levelIndex";
 export const REACHED_LEVEL = "reachedLevel";
+export const PWA_INSTALL_SHOWN = "pwaInstallShown";
 
 const DEFAULT_DATA = {
 	levelIndex: 0,
@@ -37,9 +38,9 @@ const save = () => {
 
 const set = (prop, value) => {
 	if(!isLoaded()){
-		//?
-		throw "Store must be loaded before updating!";
+		load();
 	}
+	
 	store.data[prop] = value;
 };
 

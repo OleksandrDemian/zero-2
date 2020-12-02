@@ -6,7 +6,7 @@
 	import PwaInstallButton from "./components/PwaInstallButton.svelte";
 	import Separator from "./components/Separator.svelte";
 	import TimeAttack from "./views/TimeAttack.svelte";
-	import PopUpManager from "./components/popUp/SnackBar.svelte";
+	import PopUpManager from "./components/snackBar/SnackBar.svelte";
 	import SnackBarStore from "./store/runtime/snackBarStore";
 
 	const startCampaign = () => GameStore.setMode("campaign");

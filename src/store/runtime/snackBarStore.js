@@ -20,6 +20,10 @@ const removeSnack = (snack) => {
 
 const shift = () => {
 	update(store => {
+		if(store.snacks[0].onClose){
+			store.snacks[0].onClose();
+		}
+		
 		store.snacks.shift();
 		return { ...store };
 	});

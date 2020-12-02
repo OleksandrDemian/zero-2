@@ -7,6 +7,10 @@
 	--yellow: #E9C46A;
 	--orange: #F4A261;
 
+	--small-font-size: 1rem;
+	--medium-font-size: 1.25rem;
+	--big-font-size: 1.75rem;
+
 	--border-radius: 10px;
 	--animation-speed: 0.1s;
 
@@ -21,14 +25,18 @@
 	--number-background-color: var(--orange);
 
 	--board-item-size: 75px;
-	--board-item-font-size: 1.6em;
+	--board-item-font-size: 1.6rem;
 }
 
 /* MOBILE VARIABLES */
 @media screen and (max-width: 768px) {
 	:root {
 		--board-item-size: 55px;
-		--board-item-font-size: 1.3em;
+		--board-item-font-size: 1.3rem;
+
+		/*--small-font-size: 0.75em;*/
+		/*--medium-font-size: 1em;*/
+		/*--big-font-size: 1.25em;*/
 	}
 }
 

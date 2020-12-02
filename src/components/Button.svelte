@@ -65,15 +65,16 @@
 
 	[size="default"] {
 		padding: 5px 15px;
+		font-size: var(--small-font-size);
 	}
 
 	[size="medium"] {
 		padding: 8px 24px;
-		font-size: 1.2em;
+		font-size: var(--medium-font-size);
 	}
 
 	[size="big"] {
 		padding: 10px 30px;
-		font-size: 1.5em;
+		font-size: var(--big-font-size);
 	}
 </style>
