@@ -113,11 +113,15 @@
 
 	<ProgressBar fill={stage*4+level} />
 
-	<p class="center green">Bonus +{STAGES[stage].bonus} seconds</p>
+	<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
 	<Button on:click={start} size="medium" colorScheme="green">Next level</Button>
 {:else if $GameStore.gameState === GAME_STATE.LOSE}
 	<h1 class="center red">Game over</h1>
 	<h3 class="center">You didn't manage to become the time king. Maybe the next time.</h3>
+
+	<ProgressBar fill={stage*4+level} />
+
+	<p class="center">Try to exercise yourself in campaign or random play</p>
 	<Button colorScheme="red" size="medium" on:click={() => GameStore.setMode(null)}>Go home</Button>
 {/if}
 

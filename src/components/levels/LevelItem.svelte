@@ -1,29 +1,53 @@
 <script>
-	import Button from "../Button.svelte";
 	export let level;
 	export let done = false;
 	export let active = false;
 
 	const getScheme = () => {
 		if(active){
-			return "green";
+			return "orange";
 		} else if(done){
-			return "default";
+			return "green";
 		} else {
 			return "red";
 		}
 	}
 </script>
 
-<div class="container">
-	<Button colorScheme={getScheme()} on:click>{level.name}</Button>
+<div class="container" on:click scheme={getScheme()}>
+	<span class="name">{level.name}</span>
 </div>
 
 <style>
 	div.container {
-		width: 100%;
+		min-width: var(--board-item-size);
+		min-height: 50px;
+
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		margin-bottom: 10px;
+
+		border-radius: var(--border-radius);
+		cursor: pointer;
+	}
+
+	div.container[scheme="green"] {
+		background-color: var(--green);
+	}
+
+	div.container[scheme="orange"] {
+		background-color: var(--blue);
+	}
+
+	div.container[scheme="red"] {
+		background-color: var(--red);
+	}
+
+	span.name {
+		font-weight: bold;
+		color: var(--number-text-color);
+		font-size: var(--medium-font-size);
 	}
 </style>

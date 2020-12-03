@@ -61,6 +61,8 @@
 		animation-name: background;
 		animation-timing-function: ease-in-out;
 		animation-duration: 0.3s;
+
+		z-index: 100;
     }
 
     div.snack-bar {

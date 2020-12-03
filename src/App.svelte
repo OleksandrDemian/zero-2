@@ -22,7 +22,7 @@
 		<h1>Zero.2</h1>
 
 		{ #if $GameStore.mode !== null}
-			<Button colorScheme="red" on:click={goHome}>Go home</Button>
+			<Button colorScheme="blue" on:click={goHome}>Go home</Button>
 		{/if}
 	</header>
 

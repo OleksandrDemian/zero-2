@@ -15,10 +15,10 @@
 		transition: all var(--animation-speed) ease-in-out;
 	}
 
-	button:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);
-	}
+	/*button:hover {*/
+	/*	transform: translateY(-3px);*/
+	/*	box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);*/
+	/*}*/
 
 	button:not(:disabled):active {
 		opacity: 0.8;
