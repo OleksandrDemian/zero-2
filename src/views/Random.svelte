@@ -2,8 +2,8 @@
 	import GameStore from "../store/runtime/gameStore";
 	import SimpleGame from "../components/game/SimpleGame.svelte";
 	import DIFFICULTIES from "../data/difficultySettings";
-	import Button from "../components/Button.svelte";
-	import Separator from "../components/Separator.svelte";
+	import Button from "../components/ui/Button.svelte";
+	import Separator from "../components/ui/Separator.svelte";
 
 	let difficulty = null;
 

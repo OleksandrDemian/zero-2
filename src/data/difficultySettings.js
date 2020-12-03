@@ -2,9 +2,9 @@ export const DIFFICULTY_EASY = Object.freeze({
 	maxActionValue: 6,
 	allowMultiplication: false,
 	allowDivision: false,
-	maxNumbers: 2,
+	maxNumbers: 3,
 	
-	minActions: 1,
+	minActions: 2,
 	maxActions: 3
 });
 

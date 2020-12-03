@@ -1,8 +1,10 @@
-const cacheName = "cache-v8";
+const cacheName = "cache-v9";
 
 const contentToCache = [
 	"/icons/favicon.ico",
 	"/icons/close.svg",
+	"/icons/back.svg",
+	"/images/background.svg",
 	"/logo/logo.png",
 	"/logo/w-192-logo.png",
 	"/global.css",

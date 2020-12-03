@@ -2,7 +2,7 @@
 	import NumbersBoard from "./NumbersBoard.svelte";
 	import ActionsBoard from "./ActionsBoard.svelte";
 	import GameStore, {GAME_STATE} from "../../store/runtime/gameStore";
-	import Button from "../../components/Button.svelte";
+	import Button from "../ui/Button.svelte";
 	import {createEventDispatcher} from "svelte";
 
 	const dispatch = createEventDispatcher();
@@ -16,7 +16,7 @@
     {:else if $GameStore.gameState === GAME_STATE.LOSE}
 		<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red">Try again</Button>
     {:else if $GameStore.gameState !== GAME_STATE.GAME_OVER}
-		<Button on:click={onLoadLevel($GameStore.levelIndex)}>Restart</Button>
+		<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="blue">Restart</Button>
     {/if}
 </div>
 

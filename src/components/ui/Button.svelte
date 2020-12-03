@@ -32,48 +32,53 @@
 		border-color: #666;
 	}
 
-	[color-scheme="default"] {
+	button[color-scheme="default"] {
 		background-color: white;
-		color: var(--text-color);
-		border: 1px solid var(--text-color);
+		color: var(--blue);
+		border: 2px solid var(--blue);
 	}
 
-	[color-scheme="red"] {
+	button[color-scheme="red"] {
 		background-color: var(--red);
+		border: 2px solid var(--red);
 		color: white;
 	}
 
-	[color-scheme="green"] {
+	button[color-scheme="green"] {
 		background-color: var(--green);
+		border: 2px solid var(--green);
 		color: white;
 	}
 
-	[color-scheme="blue"] {
+	button[color-scheme="blue"] {
 		background-color: var(--blue);
+		border: 2px solid var(--blue);
 		color: white;
 	}
 
-	[color-scheme="yellow"] {
+	button[color-scheme="yellow"] {
 		background-color: var(--yellow);
+		border: 2px solid var(--yellow);
 		color: white;
 	}
 
-	[color-scheme="orange"] {
+	button[color-scheme="orange"] {
 		background-color: var(--orange);
+		border: 2px solid var(--orange);
 		color: white;
 	}
 
-	[size="default"] {
+	button[size="default"] {
 		padding: 5px 15px;
 		font-size: var(--small-font-size);
 	}
 
-	[size="medium"] {
+	button[size="medium"] {
 		padding: 8px 24px;
 		font-size: var(--medium-font-size);
 	}
 
-	[size="big"] {
+	button[size="big"] {
 		padding: 10px 30px;
 		font-size: var(--big-font-size);
 	}

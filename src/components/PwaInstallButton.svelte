@@ -1,6 +1,6 @@
 <script>
 	import PwaInstallableStore from "../store/runtime/pwaInstallStore";
-	import Button from "./Button.svelte";
+	import Button from "./ui/Button.svelte";
 
 	const onInstall = () => {
 		const prompt = PwaInstallableStore.getPrompt();
@@ -25,5 +25,5 @@
 <!--		<li>Launch as native app (from menu)</li>-->
 <!--	</ul>-->
 
-	<Button colorScheme="blue" on:click={onInstall} size="medium">Install PWA</Button>
+	<Button colorScheme="blue" on:click={onInstall} size="medium">Install</Button>
 {/if}

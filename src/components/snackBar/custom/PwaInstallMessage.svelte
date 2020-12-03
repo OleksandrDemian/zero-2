@@ -1,5 +1,5 @@
 <script>
-	import Button from "../../Button.svelte";
+	import Button from "../../ui/Button.svelte";
 	import PwaInstallableStore from "../../../store/runtime/pwaInstallStore";
 
 	const onInstall = () => {

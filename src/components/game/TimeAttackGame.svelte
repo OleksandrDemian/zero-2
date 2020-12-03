@@ -2,10 +2,11 @@
 	import NumbersBoard from "./NumbersBoard.svelte";
 	import ActionsBoard from "./ActionsBoard.svelte";
 	import GameStore, {GAME_STATE} from "../../store/runtime/gameStore";
-	import Button from "../../components/Button.svelte";
+	import Button from "../ui/Button.svelte";
 	import {onDestroy} from "svelte";
 	import DIFFICULTIES from "../../data/difficultySettings";
 	import ProgressBar from "../ProgressBar.svelte";
+	import Separator from "../ui/Separator.svelte";
 
 	const STAGES = [
 		{
@@ -21,7 +22,7 @@
 		{
 			difficulty: DIFFICULTIES.HARD,
 			levels: 4,
-			bonus: 4
+			bonus: 6
 		},
 	];
 
@@ -102,16 +103,18 @@
 
 {#if end}
 	<h1 class="center green">Level clear</h1>
-	<h3 class="center">Time crown is now yours. You can be proud of yourself</h3>
+	<h3 class="center">Time Throne is yours now. You can be proud of yourself</h3>
 	<Button colorScheme="orange" size="medium" on:click={() => GameStore.setMode(null)}>Go home</Button>
 {:else if $GameStore.gameState === GAME_STATE.IN_PROGRESS}
 	<NumbersBoard />
 	<ActionsBoard />
 {:else if $GameStore.gameState === GAME_STATE.WIN}
 	<h1 class="center green">Level clear</h1>
-	<h3 class="center">Time crown is nearer with each stage.</h3>
+	<h3 class="center">The Time Throne is nearer with each stage.</h3>
 
+	<Separator />
 	<ProgressBar fill={stage*4+level} />
+	<Separator />
 
 	<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
 	<Button on:click={start} size="medium" colorScheme="green">Next level</Button>
@@ -119,7 +122,9 @@
 	<h1 class="center red">Game over</h1>
 	<h3 class="center">You didn't manage to become the time king. Maybe the next time.</h3>
 
+	<Separator />
 	<ProgressBar fill={stage*4+level} />
+	<Separator />
 
 	<p class="center">Try to exercise yourself in campaign or random play</p>
 	<Button colorScheme="red" size="medium" on:click={() => GameStore.setMode(null)}>Go home</Button>

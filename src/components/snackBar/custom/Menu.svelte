@@ -1,5 +1,5 @@
 <script>
-	import Button from "../../Button.svelte";
+	import Button from "../../ui/Button.svelte";
 	import GameStore from "../../../store/runtime/gameStore";
 
 	const onHome = () => GameStore.setMode(null);

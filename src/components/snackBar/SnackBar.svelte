@@ -60,7 +60,7 @@
 
 		animation-name: background;
 		animation-timing-function: ease-in-out;
-		animation-duration: 0.3s;
+		animation-duration: 0.5s;
 
 		z-index: 100;
     }
@@ -79,7 +79,7 @@
 
 		animation-name: snack;
 		animation-timing-function: ease-in-out;
-		animation-duration: 0.3s;
+		animation-duration: 0.5s;
     }
 
 	div.head {
