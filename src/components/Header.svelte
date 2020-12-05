@@ -1,20 +1,20 @@
 <script>
-	import GameStore from "../store/runtime/gameStore";
+	import router from "../store/runtime/router";
 
-	const goHome = () => GameStore.setMode(null);
+	const goBack = () => active && router.back();
 	let active = false;
 
 	$: {
-		active = $GameStore.mode !== null;
+		active = $router.current.to !== "";
     }
 </script>
 
 <header class:active={active}>
-	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goHome} />
+	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goBack} />
 
 	<h1>Zero.2</h1>
 
-	<img width="32" height="32" src="./icons/back.svg" alt="close" on:click={goHome} />
+	<img width="32" height="32" src="./icons/back.svg" alt="close" />
 </header>
 
 <style>

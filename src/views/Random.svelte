@@ -5,6 +5,7 @@
 	import Button from "../components/ui/Button.svelte";
 	import Separator from "../components/ui/Separator.svelte";
 	import Column from "../components/containers/Column.svelte";
+	import router from "../store/runtime/router";
 
 	let difficulty = null;
 
@@ -32,7 +33,7 @@
 		<Separator />
 		<Button on:click={initDifficultyListener(DIFFICULTIES.HARD)} colorScheme="red" size="medium">Hard</Button>
 		<Separator />
-		<Button on:click={() => GameStore.setMode(null)} colorScheme="red" outline size="medium">Back</Button>
+		<Button on:click={() => router.back()} colorScheme="red" outline size="medium">Back</Button>
 	</Column>
 {:else}
 	<SimpleGame on:level={onLevel} />

@@ -7,6 +7,7 @@
 	import DIFFICULTIES from "../../data/difficultySettings";
 	import ProgressBar from "../ProgressBar.svelte";
 	import Separator from "../ui/Separator.svelte";
+	import router from "../../store/runtime/router";
 
 	const STAGES = [
 		{
@@ -104,7 +105,7 @@
 {#if end}
 	<h1 class="center green">Level clear</h1>
 	<h3 class="center">Time Throne is yours now. You can be proud of yourself</h3>
-	<Button colorScheme="orange" size="medium" on:click={() => GameStore.setMode(null)}>Go home</Button>
+	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {:else if $GameStore.gameState === GAME_STATE.IN_PROGRESS}
 	<NumbersBoard />
 	<ActionsBoard />
@@ -127,7 +128,7 @@
 	<Separator />
 
 	<p class="center">Try to exercise yourself in campaign or random play</p>
-	<Button colorScheme="red" size="medium" on:click={() => GameStore.setMode(null)}>Go home</Button>
+	<Button colorScheme="red" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {/if}
 
 <style>
