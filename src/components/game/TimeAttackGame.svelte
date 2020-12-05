@@ -131,10 +131,6 @@
 {/if}
 
 <style>
-	.center {
-		text-align: center;
-	}
-
 	.red {
 		color: var(--red);
 	}

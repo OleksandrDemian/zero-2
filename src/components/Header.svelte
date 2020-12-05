@@ -2,13 +2,19 @@
 	import GameStore from "../store/runtime/gameStore";
 
 	const goHome = () => GameStore.setMode(null);
+	let active = false;
+
+	$: {
+		active = $GameStore.mode !== null;
+    }
 </script>
 
-<header>
-	<h1 class:active={$GameStore.mode !== null} on:click={goHome}>
-		<img width="32" height="32" src="./icons/back.svg" alt="close" />
-        Zero.2
-    </h1>
+<header class:active={active}>
+	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goHome} />
+
+	<h1>Zero.2</h1>
+
+	<img width="32" height="32" src="./icons/back.svg" alt="close" on:click={goHome} />
 </header>
 
 <style>
@@ -18,27 +24,14 @@
 		justify-content: space-between;
 	}
 
-    h1 {
-        display: flex;
-        align-items: center;
-        border-bottom: 2px solid transparent;
-        transition: border-bottom-color var(--animation-speed) ease-in-out;
-    }
-
-    h1.active {
-		border-bottom: 2px solid black;
-        cursor: pointer;
-    }
-
     img {
-        width: 0;
+        cursor: pointer;
+        opacity: 0;
 
-        transition: all var(--animation-speed) ease-in-out;
-        margin-right: 0;
+		transition: opacity var(--animation-speed) ease-in-out;
     }
 
-	h1.active > img {
-		width: 32px;
-		margin-right: 10px
+	img.active {
+		opacity: 1;
     }
 </style>

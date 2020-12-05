@@ -31,10 +31,10 @@
 		background-color: var(--action-background-color);
 	}
 
-	div.container:not(.used):hover {
-		transform: translateY(-3px);
-		box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);
-	}
+	/*div.container:not(.used):hover {*/
+	/*	transform: translateY(-3px);*/
+	/*	box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);*/
+	/*}*/
 
 	div.container.used {
 		opacity: 0.3;

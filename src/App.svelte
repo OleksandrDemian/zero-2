@@ -13,6 +13,7 @@
 	import FirstTimeMessage from "./components/snackBar/custom/FirstTimeMessage.svelte";
 	import HowToPlay from "./views/HowToPlay.svelte";
 	import Version from "./components/Version.svelte";
+	import Column from "./components/containers/Column.svelte";
 
 	const startCampaign = () => GameStore.setMode("campaign");
 	const startRandom = () => GameStore.setMode("random");
@@ -47,17 +48,20 @@
 	{:else if $GameStore.mode === "how-to-play"}
 		<HowToPlay />
 	{:else}
+	<Column>
+<!--		<h1 class="center">Zero.2</h1>-->
 		<Button on:click={startCampaign} colorScheme="green" size="medium">Play campaign</Button>
 		<Separator />
 		<Button on:click={startRandom} colorScheme="orange" size="medium">Play random</Button>
 		<Separator />
 		<Button on:click={startTimeAttack} colorScheme="red" size="medium">Time Throne</Button>
 		<Separator />
-		<Button on:click={showHowToPlay} size="medium">How to play</Button>
+		<Button on:click={showHowToPlay} size="medium" outline>How to play</Button>
 		<Separator />
 		<PwaInstallButton />
 
 		<Version />
+	</Column>
 	{/if}
 </main>
 
@@ -71,6 +75,7 @@
 	main {
 		width: 100%;
 		max-width: 500px;
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
 

@@ -34,10 +34,10 @@
 		color: var(--number-text-color);
 	}
 
-	div.number-container:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);
-	}
+	/*div.number-container:hover {*/
+	/*	transform: translateY(-3px);*/
+	/*	box-shadow: 0 3px 0 0 rgba(28, 24, 0, .1);*/
+	/*}*/
 
 	div.number-container.active {
 		transform: translateY(-8px);

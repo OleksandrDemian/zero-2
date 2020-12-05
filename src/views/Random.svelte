@@ -4,6 +4,7 @@
 	import DIFFICULTIES from "../data/difficultySettings";
 	import Button from "../components/ui/Button.svelte";
 	import Separator from "../components/ui/Separator.svelte";
+	import Column from "../components/containers/Column.svelte";
 
 	let difficulty = null;
 
@@ -24,12 +25,15 @@
 </script>
 
 {#if difficulty === null}
-	<h3>Select difficulty:</h3>
-	<Button on:click={initDifficultyListener(DIFFICULTIES.EASY)} colorScheme="green" size="medium">Easy</Button>
-	<Separator />
-	<Button on:click={initDifficultyListener(DIFFICULTIES.MEDIUM)} colorScheme="orange" size="medium">Medium</Button>
-	<Separator />
-	<Button on:click={initDifficultyListener(DIFFICULTIES.HARD)} colorScheme="red" size="medium">Hard</Button>
+	<Column>
+		<Button on:click={initDifficultyListener(DIFFICULTIES.EASY)} colorScheme="green" size="medium">Easy</Button>
+		<Separator />
+		<Button on:click={initDifficultyListener(DIFFICULTIES.MEDIUM)} colorScheme="orange" size="medium">Medium</Button>
+		<Separator />
+		<Button on:click={initDifficultyListener(DIFFICULTIES.HARD)} colorScheme="red" size="medium">Hard</Button>
+		<Separator />
+		<Button on:click={() => GameStore.setMode(null)} colorScheme="red" outline size="medium">Back</Button>
+	</Column>
 {:else}
 	<SimpleGame on:level={onLevel} />
 {/if}

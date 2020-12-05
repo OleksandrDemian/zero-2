@@ -4,7 +4,7 @@
 
 <style>
 	div {
-		margin-top: 15px;
+		margin: 15px 0;
 		opacity: 0.5;
 		width: 100%;
 		display: flex;

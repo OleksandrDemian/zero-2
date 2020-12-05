@@ -17,8 +17,6 @@
 	}
 
 	div.container > b {
-		/*writing-mode: vertical-rl;*/
-		text-orientation: upright;
 		text-align: center;
 		margin: 10px 0;
 
