@@ -1,9 +1,10 @@
 <script>
 	export let colorScheme = "default";
 	export let size = "default";
+	export let outline = false;
 </script>
 
-<button on:click color-scheme={colorScheme} size={size}>
+<button on:click color-scheme={colorScheme} size={size} class:outline={outline}>
 	<slot></slot>
 </button>
 
@@ -32,37 +33,75 @@
 		border-color: #666;
 	}
 
-	button[color-scheme="default"] {
+	/*OUTLINE*/
+	button[color-scheme="default"].outline {
 		background-color: white;
-		color: var(--blue);
-		border: 2px solid var(--blue);
+		color: black;
+		border: 2px solid black;
 	}
 
-	button[color-scheme="red"] {
+	button[color-scheme="red"].outline {
+		background-color: white;
+		border: 2px solid var(--red);
+		color: var(--red);
+	}
+
+	button[color-scheme="green"].outline {
+		background-color: white;
+		border: 2px solid var(--green);
+		color: var(--green);
+	}
+
+	button[color-scheme="blue"].outline {
+		background-color: white;
+		border: 2px solid var(--blue);
+		color: var(--blue);
+	}
+
+	button[color-scheme="yellow"].outline {
+		background-color: white;
+		border: 2px solid var(--yellow);
+		color: var(--yellow);
+	}
+
+	button[color-scheme="orange"].outline {
+		background-color: white;
+		border: 2px solid var(--orange);
+		color: var(--orange);
+	}
+
+	/*FILL*/
+	button[color-scheme="default"]:not(.outline) {
+		background-color: black;
+		border: 2px solid black;
+		color: white;
+	}
+
+	button[color-scheme="red"]:not(.outline) {
 		background-color: var(--red);
 		border: 2px solid var(--red);
 		color: white;
 	}
 
-	button[color-scheme="green"] {
+	button[color-scheme="green"]:not(.outline) {
 		background-color: var(--green);
 		border: 2px solid var(--green);
 		color: white;
 	}
 
-	button[color-scheme="blue"] {
+	button[color-scheme="blue"]:not(.outline) {
 		background-color: var(--blue);
 		border: 2px solid var(--blue);
 		color: white;
 	}
 
-	button[color-scheme="yellow"] {
+	button[color-scheme="yellow"]:not(.outline) {
 		background-color: var(--yellow);
 		border: 2px solid var(--yellow);
 		color: white;
 	}
 
-	button[color-scheme="orange"] {
+	button[color-scheme="orange"]:not(.outline) {
 		background-color: var(--orange);
 		border: 2px solid var(--orange);
 		color: white;
