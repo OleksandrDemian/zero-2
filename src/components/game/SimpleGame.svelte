@@ -4,31 +4,23 @@
 	import GameStore, {GAME_STATE} from "../../store/runtime/gameStore";
 	import Button from "../ui/Button.svelte";
 	import {createEventDispatcher} from "svelte";
+	import Column from "../containers/Column.svelte";
+	import Separator from "../ui/Separator.svelte";
 
 	const dispatch = createEventDispatcher();
 	const onLoadLevel = (levelIndex) => () => dispatch("level", levelIndex);
 </script>
 
-<div class="level-head">
-	<h3>Level {$GameStore.title}</h3>
-    {#if $GameStore.gameState === GAME_STATE.WIN}
-		<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green">Next level</Button>
-    {:else if $GameStore.gameState === GAME_STATE.LOSE}
-		<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red">Try again</Button>
-    {:else if $GameStore.gameState !== GAME_STATE.GAME_OVER}
-		<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="blue">Restart</Button>
-    {/if}
-</div>
-
-{#if $GameStore.gameState !== GAME_STATE.GAME_OVER}
-	<NumbersBoard />
+<Column>
+	<NumbersBoard title={"Stage " + $GameStore.title} />
 	<ActionsBoard />
-{/if}
+</Column>
+<Separator />
 
-<style>
-	div.level-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-</style>
+{#if $GameStore.gameState === GAME_STATE.WIN}
+	<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green" size="medium">Next level</Button>
+{:else if $GameStore.gameState === GAME_STATE.LOSE}
+	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red" size="medium">Try again</Button>
+{:else if $GameStore.gameState !== GAME_STATE.GAME_OVER}
+	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="blue" size="medium">Restart</Button>
+{/if}

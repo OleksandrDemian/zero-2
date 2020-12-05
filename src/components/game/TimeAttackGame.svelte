@@ -8,6 +8,7 @@
 	import ProgressBar from "../ProgressBar.svelte";
 	import Separator from "../ui/Separator.svelte";
 	import router from "../../store/runtime/router";
+	import SimpleGame from "./SimpleGame.svelte";
 
 	const STAGES = [
 		{
@@ -93,22 +94,24 @@
 		unsubscribe();
 	});
 
+	const onLevel = ({detail}) => {
+		if(detail === level){
+			GameStore.createRandomLevel(level);
+		}
+	};
+
 	GameStore.resetLevelIndex();
 	start();
 </script>
 
-<div class="level-head">
-	<h3>Stage {stage}-{level}</h3>
-	<h3 class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
-</div>
+<h3 class="center" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
 
 {#if end}
 	<h1 class="center green">Level clear</h1>
 	<h3 class="center">Time Throne is yours now. You can be proud of yourself</h3>
 	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {:else if $GameStore.gameState === GAME_STATE.IN_PROGRESS}
-	<NumbersBoard />
-	<ActionsBoard />
+	<SimpleGame on:level={onLevel} />
 {:else if $GameStore.gameState === GAME_STATE.WIN}
 	<h1 class="center green">Level clear</h1>
 	<h3 class="center">The Time Throne is nearer with each stage.</h3>
@@ -138,11 +141,5 @@
 
 	.green {
 		color: var(--green);
-	}
-
-	div.level-head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 	}
 </style>

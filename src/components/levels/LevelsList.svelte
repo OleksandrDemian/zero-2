@@ -5,13 +5,22 @@
 	import {createEventDispatcher} from "svelte";
 	import {groupLevels} from "../../utils/levelsGrouper";
 	import ProgressBar from "../ProgressBar.svelte";
+	import SnackBarStore from "../../store/runtime/snackBarStore";
 
 	const dispatch = createEventDispatcher();
 
 	const reachedLevel = PersistentStore.get(REACHED_LEVEL);
 
 	const triggerLevel = (level) => {
-		return () => reachedLevel >= level && dispatch("click", level);
+		return () => {
+			if(reachedLevel >= level) {
+				dispatch("click", level);
+			} else {
+				SnackBarStore.showSnack({
+					title: "Level blocked"
+				});
+			}
+		}
 	};
 
 	const GROUPS = ["tutorial", "easy", "medium", "hard"];
@@ -42,7 +51,7 @@
 		grid-gap: 10px;
 	}
 
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 500px) {
 		div.levels {
 			grid-template-columns: 1fr;
 		}

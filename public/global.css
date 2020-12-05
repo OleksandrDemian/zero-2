@@ -30,7 +30,7 @@
 }
 
 /* MOBILE VARIABLES */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
 	:root {
 		--board-item-size: 55px;
 		--board-item-font-size: 1.3rem;

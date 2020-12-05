@@ -12,7 +12,7 @@
 
 	const startCampaign = () => router.navigate("campaign");
 	const startRandom = () => router.navigate("random");
-	const startTimeAttack = () => router.navigate("time");
+	const startTimeAttack = () => router.navigate("time-intro");
 	const showHowToPlay = () => router.navigate("how-it-works");
 
 	if (PersistentStore.get(FIRST_TIME) !== false) {

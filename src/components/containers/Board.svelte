@@ -3,7 +3,7 @@
 </script>
 
 <div class="container">
-	<b>{title}</b>
+	<h3 class="center">{title}</h3>
 	<div class="board">
 		<slot></slot>
 	</div>
@@ -14,14 +14,6 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-	}
-
-	div.container > b {
-		text-align: center;
-		margin: 10px 0;
-
-		border-bottom: 1px solid var(--action-background-color);
-		padding-bottom: 10px;
 	}
 
 	div.board {

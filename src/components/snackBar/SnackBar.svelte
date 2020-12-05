@@ -5,7 +5,7 @@
 </script>
 
 { #if $SnackBarStore.snacks.length > 0 }
-	<div class="container">
+	<div class="container" on:click={onClose}>
 		<div class="snack-bar">
 			<div class="head">
 				<span class="title">{$SnackBarStore.snacks[0].title}</span>
@@ -14,7 +14,7 @@
 
 			{#if $SnackBarStore.snacks[0].child}
 				<svelte:component this={$SnackBarStore.snacks[0].child} />
-			{:else}
+			{:else if $SnackBarStore.snacks[0].message}
 				<span class="message">{$SnackBarStore.snacks[0].message}</span>
 			{/if}
 		</div>
@@ -60,7 +60,7 @@
 
 		animation-name: background;
 		animation-timing-function: ease-in-out;
-		animation-duration: 0.5s;
+		animation-duration: 0.2s;
 
 		z-index: 100;
     }
@@ -79,7 +79,7 @@
 
 		animation-name: snack;
 		animation-timing-function: ease-in-out;
-		animation-duration: 0.5s;
+		animation-duration: 0.2s;
     }
 
 	div.head {

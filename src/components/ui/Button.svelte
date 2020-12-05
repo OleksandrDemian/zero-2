@@ -121,4 +121,13 @@
 		padding: 10px 30px;
 		font-size: var(--big-font-size);
 	}
+
+	@media screen and (min-width: 500px) {
+		button {
+			width: fit-content;
+			min-width: 210px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
 </style>
