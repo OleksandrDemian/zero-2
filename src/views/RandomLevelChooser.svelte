@@ -21,5 +21,9 @@
 	<Separator />
 	<Button on:click={start(DIFFICULTIES.HARD)} colorScheme="red" size="medium">Hard</Button>
 	<Separator />
+	<Button on:click={start(DIFFICULTIES.SUPER_HARD)} colorScheme="blue" size="medium">Super hard</Button>
+	<Separator />
+	<Button on:click={start(DIFFICULTIES.EXTREME)} size="medium">Extreme</Button>
+	<Separator />
 	<Button on:click={() => router.back()} colorScheme="red" outline size="medium">Back</Button>
 </Column>

@@ -58,6 +58,7 @@ const DEFAULT_GENERATION_SETTINGS = () => ({
 	maxActionValue: 10,
 	allowMultiplication: false,
 	allowDivision: true,
+	minNumbers: 1,
 	maxNumbers: 4,
 	
 	name: "Generated",
@@ -73,7 +74,7 @@ export const createLevel = (settings, controlValue = 0) => {
 	
 	settings = Object.assign({}, DEFAULT_GENERATION_SETTINGS(), settings || {});
 	
-	const numbersCount = random(1, settings.maxNumbers+1);
+	const numbersCount = random(settings.minNumbers, settings.maxNumbers+1);
 	const cycles = random(settings.minActions, settings.maxActions+1);
 	
 	const numbers = [];
