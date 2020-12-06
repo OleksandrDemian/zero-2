@@ -25,15 +25,15 @@
 	--number-text-color: #FFFFFC;
 	--number-background-color: var(--orange);
 
-	--board-item-size: 75px;
-	--board-item-font-size: 1.4rem;
+	--board-item-size: 55px;
+	--board-item-font-size: 1.1rem;
 }
 
 /* MOBILE VARIABLES */
 @media screen and (max-width: 500px) {
 	:root {
-		--board-item-size: 55px;
-		--board-item-font-size: 1.1rem;
+		/*--board-item-size: 55px;*/
+		/*--board-item-font-size: 1.1rem;*/
 
 		/*--small-font-size: 0.75em;*/
 		/*--medium-font-size: 1em;*/
