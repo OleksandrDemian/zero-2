@@ -1,5 +1,5 @@
 <div>
-	<span>Version: 0.2.1-alpha</span>
+	<span>Version: 0.2.2-alpha</span>
 </div>
 
 <style>
