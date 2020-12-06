@@ -12,6 +12,7 @@
 	import TimeThroneIntro from "./views/TimeThroneIntro.svelte";
 	import Game from "./views/Game.svelte";
 	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
+	import ProgressBar from "./components/ProgressBar.svelte";
 
 	router.addRoute("", Home);
 	router.addRoute("random-level-chooser", RandomLevelChooser);

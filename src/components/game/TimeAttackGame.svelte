@@ -1,6 +1,4 @@
 <script>
-	import NumbersBoard from "./NumbersBoard.svelte";
-	import ActionsBoard from "./ActionsBoard.svelte";
 	import GameStore, {GAME_STATE} from "../../store/runtime/gameStore";
 	import Button from "../ui/Button.svelte";
 	import {onDestroy} from "svelte";
@@ -9,66 +7,76 @@
 	import Separator from "../ui/Separator.svelte";
 	import router from "../../store/runtime/router";
 	import SimpleGame from "./SimpleGame.svelte";
+	import Column from "../containers/Column.svelte";
+
+	const STATE = {
+		NONE: -1,
+		IN_PROGRESS: 0,
+		STAGE_CLEAR: 1,
+		ATTACK_COMPLETE: 2,
+		TIME_OUT: 3
+	};
+
+	const TIME_LIMIT = 20;
 
 	const STAGES = [
 		{
+			difficulty: DIFFICULTIES.TUTORIAL,
+			name: "Cave",
+			levels: 2,
+			bonus: 4
+		},
+		{
 			difficulty: DIFFICULTIES.EASY,
-			levels: 4,
-			bonus: 2
+			name: "Void",
+			levels: 3,
+			bonus: 5
 		},
 		{
 			difficulty: DIFFICULTIES.MEDIUM,
+			name: "Platform",
 			levels: 4,
-			bonus: 3
+			bonus: 10
 		},
 		{
 			difficulty: DIFFICULTIES.HARD,
+			name: "Hall",
 			levels: 4,
-			bonus: 6
+			bonus: 10
 		},
 	];
 
-	let isPlaying = false;
-	let end = false;
-
-	let counter = 0;
-	const levels = STAGES.reduce(((previousValue, currentValue) => previousValue + currentValue.levels), 0);
+	let state = STATE.NONE;
 
 	let level = 0;
-	let stage = 0;
+	let stage = -1;
 
-	let seconds = 15;
+	let seconds = TIME_LIMIT;
 	let intervalId = null;
 
 	const unsubscribe = GameStore.subscribe(value => {
-		if (isPlaying && value.gameState === GAME_STATE.WIN) {
-			counter++;
-
-			if (counter >= levels) {
-				end = true;
+		if(state === STATE.IN_PROGRESS){
+			if (value.gameState === GAME_STATE.WIN) {
+				if (level < STAGES[stage].levels) {
+					nextLevel();
+				} else {
+					stageClear();
+				}
+			} else if (value.gameState === GAME_STATE.LOSE) {
+				level--;
+				stop();
+				nextLevel();
 			}
-
-			seconds += STAGES[stage].bonus;
-
-			stop();
-		} else if (isPlaying && value.gameState === GAME_STATE.LOSE) {
-			level--;
-			stop();
-			start();
 		}
 	});
 
-	const start = () => {
+	const nextLevel = () => {
 		level++;
-
-		if (level > STAGES[stage].levels) {
-			level = 1;
-			stage++;
-		}
+		seconds ++;
 
 		GameStore.createRandomLevel(level, STAGES[stage].difficulty);
-		isPlaying = true;
 
+		stop();
 		intervalId = setInterval(() => {
 			seconds--;
 
@@ -79,14 +87,37 @@
 		}, 1000);
 	};
 
+	const nextStage = () => {
+		//this is called also at the beginning. Do not add bonus
+		if(stage > -1){
+			seconds += STAGES[stage].bonus;
+		}
+
+		stage ++;
+		state = STATE.IN_PROGRESS;
+
+		level = 0;
+		nextLevel();
+	};
+
+	const stageClear = () => {
+		stop();
+
+		if(stage >= STAGES.length){
+			state = STATE.ATTACK_COMPLETE;
+		} else {
+			state = STATE.STAGE_CLEAR;
+			level = 0;
+		}
+	};
+
 	const stop = () => {
-		isPlaying = false;
 		clearInterval(intervalId);
 	};
 
 	const gameOver = () => {
 		stop();
-		GameStore.setState(GAME_STATE.LOSE);
+		state = STATE.TIME_OUT;
 	};
 
 	onDestroy(() => {
@@ -95,42 +126,54 @@
 	});
 
 	const onLevel = ({detail}) => {
-		if(detail === level){
+		if (detail === level) {
 			GameStore.createRandomLevel(level);
 		}
 	};
 
 	GameStore.resetLevelIndex();
-	start();
+	nextStage();
 </script>
 
 <h3 class="center" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
 
-{#if end}
-	<h1 class="center green">Level clear</h1>
+{#if state === STATE.ATTACK_COMPLETE}
+	<!--VICTORY-->
+
+	<h1 class="center green">Time throne is yours now</h1>
 	<h3 class="center">Time Throne is yours now. You can be proud of yourself</h3>
 	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
-{:else if $GameStore.gameState === GAME_STATE.IN_PROGRESS}
+{:else if state === STATE.IN_PROGRESS}
+	<!--IN PROGRESS-->
+
 	<SimpleGame on:level={onLevel} />
-{:else if $GameStore.gameState === GAME_STATE.WIN}
-	<h1 class="center green">Level clear</h1>
-	<h3 class="center">The Time Throne is nearer with each stage.</h3>
+{:else if state === STATE.STAGE_CLEAR}
+	<!--STAGE CLEAR-->
 
-	<Separator />
-	<ProgressBar fill={stage*4+level} />
-	<Separator />
+	<h1 class="center green">Stage clear</h1>
 
-	<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
-	<Button on:click={start} size="medium" colorScheme="green">Next level</Button>
-{:else if $GameStore.gameState === GAME_STATE.LOSE}
+	<Column>
+		<ProgressBar fill={stage+1} max={STAGES.length} />
+		<h3 class="center">The Time Throne is nearer with each stage.</h3>
+		<Separator />
+		<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
+		<Separator />
+	</Column>
+
+	<Button on:click={nextStage} size="medium" colorScheme="green">Next stage</Button>
+{:else if state === STATE.TIME_OUT}
+	<!--TIME OUT-->
+
 	<h1 class="center red">Game over</h1>
-	<h3 class="center">You didn't manage to become the time king. Maybe the next time.</h3>
 
-	<Separator />
-	<ProgressBar fill={stage*4+level} />
-	<Separator />
+	<Column>
+		<ProgressBar fill={stage} max={STAGES.length} />
+		<h3 class="center">You didn't manage to become the time king. Maybe the next time.</h3>
+		<Separator />
+		<p class="center">Try to exercise yourself in campaign or random play</p>
+		<Separator />
+	</Column>
 
-	<p class="center">Try to exercise yourself in campaign or random play</p>
 	<Button colorScheme="red" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {/if}
 

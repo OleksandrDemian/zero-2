@@ -75,8 +75,8 @@ const createRandomLevel = (levelIndex, settings) => {
 	
 	if(storeHelper.levelIndex !== levelIndex){
 		level = createLevel({
-			...settings,
-			name: "G-" + levelIndex
+			name: "G-" + levelIndex,
+			...settings
 		});
 		
 		storeHelper.levelIndex = levelIndex;
