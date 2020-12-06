@@ -11,7 +11,7 @@
 	import router from "../store/runtime/router";
 
 	const startCampaign = () => router.navigate("campaign");
-	const startRandom = () => router.navigate("random");
+	const startRandom = () => router.navigate("random-level-chooser");
 	const startTimeAttack = () => router.navigate("time-intro");
 	const showHowToPlay = () => router.navigate("how-it-works");
 

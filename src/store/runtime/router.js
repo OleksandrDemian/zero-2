@@ -1,6 +1,10 @@
-import {writable} from "svelte/store";
+import store from "./store";
 
-const {set, subscribe, update} = writable({
+const DEFAULT_ROUTE_SETTINGS = {
+	showBack: false
+};
+
+const {set, get, subscribe, update} = store({
 	routes: {},
 	history: [],
 	current: {
@@ -9,9 +13,15 @@ const {set, subscribe, update} = writable({
 	}
 });
 
-const addRoute = (to, component) => {
+const addRoute = (to, component, settings = null) => {
 	update(store => {
-		store.routes[to] = component;
+		if(settings == null){
+			settings = Object.assign({}, DEFAULT_ROUTE_SETTINGS);
+		} else {
+			settings = Object.assign({}, DEFAULT_ROUTE_SETTINGS, settings);
+		}
+		
+		store.routes[to] = { component, settings };
 		
 		return {...store};
 	});
@@ -34,13 +44,15 @@ const back = () => {
 	});
 };
 
+const getRoute = (to) => get().routes[to];
 window.addEventListener("popstate", back, false);
 
 const router = {
 	subscribe,
 	addRoute,
 	navigate,
-	back
+	back,
+	getRoute
 };
 
 export default router;

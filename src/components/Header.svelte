@@ -5,7 +5,7 @@
 	let active = false;
 
 	$: {
-		active = $router.current.to !== "";
+		active = router.getRoute($router.current.to).settings.showBack === true;
     }
 </script>
 

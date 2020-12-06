@@ -11,13 +11,15 @@
 	import HowToPlay from "./views/HowToPlay.svelte";
 	import TimeThroneIntro from "./views/TimeThroneIntro.svelte";
 	import Game from "./views/Game.svelte";
+	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
 
 	router.addRoute("", Home);
-	router.addRoute("random", Random);
-	router.addRoute("campaign", Campaign);
-	router.addRoute("level", Game);
+	router.addRoute("random-level-chooser", RandomLevelChooser);
+	router.addRoute("random", Random, {showBack: true});
+	router.addRoute("campaign", Campaign, {showBack: true});
+	router.addRoute("level", Game, {showBack: true});
 	router.addRoute("time-intro", TimeThroneIntro);
-	router.addRoute("time-game", TimeAttack);
+	router.addRoute("time-game", TimeAttack, {showBack: true});
 	router.addRoute("how-it-works", HowToPlay);
 </script>
 

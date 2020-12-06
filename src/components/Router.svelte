@@ -4,7 +4,7 @@
 	let route = null;
 
 	$: {
-		route = $router.routes[$router.current.to];
+		route = $router.routes[$router.current.to].component;
 	}
 </script>
 
