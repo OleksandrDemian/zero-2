@@ -18,4 +18,4 @@
 
 <LevelsList on:click={onLevel} />
 <Separator />
-<Button size="medium" colorScheme="red" outline on:click={() => router.back()}>Go back</Button>
+<Button size="medium" colorScheme="red" outline on:click={() => router.back()}>Back</Button>

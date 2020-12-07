@@ -1,9 +1,11 @@
 <script>
-	export let title = "--";
+	export let title = null;
 </script>
 
 <div class="container">
-	<h3 class="center">{title}</h3>
+	{#if title}
+		<h3 class="center">{title}</h3>
+	{/if}
 	<div class="board">
 		<slot></slot>
 	</div>

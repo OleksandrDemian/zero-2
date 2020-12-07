@@ -1,13 +1,11 @@
-<div>
-	<span>Version: 0.2.3-alpha</span>
-</div>
+<span>Version: 0.2.4-alpha</span>
 
 <style>
-	div {
+	span {
 		margin: 15px 0;
 		opacity: 0.5;
 		width: 100%;
-		display: flex;
-		justify-content: center;
+		display: block;
+		text-align: center;
 	}
 </style>

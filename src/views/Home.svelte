@@ -9,10 +9,9 @@
 	import Version from "../components/Version.svelte";
 	import Column from "../components/containers/Column.svelte";
 	import router from "../store/runtime/router";
+	import Follow from "../components/Follow.svelte";
 
-	const startCampaign = () => router.navigate("campaign");
-	const startRandom = () => router.navigate("random-level-chooser");
-	const startTimeAttack = () => router.navigate("time-intro");
+	const startPlay = () => router.navigate("play");
 	const showHowToPlay = () => router.navigate("how-it-works");
 
 	if (PersistentStore.get(FIRST_TIME) !== false) {
@@ -30,15 +29,13 @@
 </script>
 
 <Column>
-	<Button on:click={startCampaign} colorScheme="green" size="medium">Play campaign</Button>
+	<Button on:click={startPlay} colorScheme="green" size="medium">Play</Button>
 	<Separator />
-	<Button on:click={startRandom} colorScheme="orange" size="medium">Play random</Button>
-	<Separator />
-	<Button on:click={startTimeAttack} colorScheme="red" size="medium">Time Throne</Button>
-	<Separator />
-	<Button on:click={showHowToPlay} size="medium" outline>How to play</Button>
+	<Button on:click={showHowToPlay} colorScheme="orange" size="medium">How to play</Button>
 	<Separator />
 	<PwaInstallButton />
 
+	<Separator />
+	<Follow />
 	<Version />
 </Column>

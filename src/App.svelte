@@ -13,15 +13,17 @@
 	import Game from "./views/Game.svelte";
 	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
 	import ProgressBar from "./components/ProgressBar.svelte";
+	import Play from "./views/Play.svelte";
 
 	router.addRoute("", Home);
-	router.addRoute("random-level-chooser", RandomLevelChooser);
+	router.addRoute("play", Play, {showBack: true});
+	router.addRoute("random-level-chooser", RandomLevelChooser, {showBack: true});
 	router.addRoute("random", Random, {showBack: true});
 	router.addRoute("campaign", Campaign, {showBack: true});
 	router.addRoute("level", Game, {showBack: true});
-	router.addRoute("time-intro", TimeThroneIntro);
+	router.addRoute("time-intro", TimeThroneIntro, {showBack: true});
 	router.addRoute("time-game", TimeAttack, {showBack: true});
-	router.addRoute("how-it-works", HowToPlay);
+	router.addRoute("how-it-works", HowToPlay, {showBack: true});
 </script>
 
 <SnackBar />

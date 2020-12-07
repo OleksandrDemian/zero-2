@@ -9,7 +9,7 @@
 	};
 
 	const leave = () => {
-		router.navigate("");
+		router.back();
 	}
 
 </script>
@@ -21,5 +21,5 @@
 	<Separator />
 	<Button size="medium" colorScheme="green" on:click={enter}>Let's go</Button>
 	<Separator />
-	<Button size="medium" colorScheme="red" outline on:click={leave}>Nope</Button>
+	<Button size="medium" colorScheme="red" outline on:click={leave}>Back</Button>
 </Column>
