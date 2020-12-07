@@ -10,7 +10,7 @@ Play one of three modes:
 - Random (have some fun).
 - Conquer Time Throne by completing set of challenging challenges. Pay attention to the Math-Time King.
 
-## :Link: Links
+## :link: Links
 - [Playable version](https://zero.oleksandrdemian.tech/)
 - [Game Jolt](https://gamejolt.com/games/zero-2/562698)
 - [Follow on twitter for updates](https://twitter.com/9zemian5)
