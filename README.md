@@ -22,5 +22,5 @@ Play one of three modes:
 ## :rocket: Releases
 #### 07/12/2020 - 0.2.4-alpha
 - Cleanup home screen: move all the play modes under "Play" section
-- Use same label for back buttons: each section had different label for back button (back, go back, nope).
+- Use the same label for the back buttons - each section had a different label for the back button (back, go back, nope).
 - Readme
