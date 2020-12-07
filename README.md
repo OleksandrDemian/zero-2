@@ -1,6 +1,6 @@
 # :fire: Zero.2
 
-![Zero.2 gameplay](https://github.com/OleksandrDemian/zero-2/public/images/example.png)
+![Zero.2 gameplay](https://github.com/OleksandrDemian/zero-2/blob/master/public/images/example.png)
 
 ## :gem: About
 Zero.2 is all about finding patterns between numbers and operations.
