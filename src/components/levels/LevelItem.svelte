@@ -46,7 +46,6 @@
 	}
 
 	span.name {
-		font-weight: bold;
 		color: var(--number-text-color);
 		font-size: var(--medium-font-size);
 	}

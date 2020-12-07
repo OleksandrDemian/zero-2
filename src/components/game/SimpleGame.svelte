@@ -18,9 +18,9 @@
 <Separator />
 
 {#if $GameStore.gameState === GAME_STATE.WIN}
-	<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green" size="medium">Next level</Button>
+	<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green" bold>Next level</Button>
 {:else if $GameStore.gameState === GAME_STATE.LOSE}
-	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red" size="medium">Try again</Button>
+	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red" bold>Try again</Button>
 {:else if $GameStore.gameState !== GAME_STATE.GAME_OVER}
-	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="blue" size="medium">Restart</Button>
+	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="blue" bold>Restart</Button>
 {/if}

@@ -21,17 +21,19 @@
 	header {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 	}
 
     img {
         cursor: pointer;
-        opacity: 0;
+        width: 0;
+		margin-right: 0;
 
-		transition: opacity var(--animation-speed) ease-in-out;
+		transition: all var(--animation-speed) ease-in-out;
     }
 
 	img.active {
-		opacity: 1;
+		width: 32px;
+		margin-right: 15px;
     }
 </style>

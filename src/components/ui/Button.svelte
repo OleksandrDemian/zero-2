@@ -2,9 +2,10 @@
 	export let colorScheme = "default";
 	export let size = "default";
 	export let outline = false;
+	export let bold = false;
 </script>
 
-<button on:click color-scheme={colorScheme} size={size} class:outline={outline}>
+<button on:click color-scheme={colorScheme} size={size} class:outline class:bold>
 	<slot></slot>
 </button>
 
@@ -23,6 +24,10 @@
 
 	button:not(:disabled):active {
 		opacity: 0.8;
+	}
+
+	button.bold {
+		font-weight: bold;
 	}
 
 	button:disabled {

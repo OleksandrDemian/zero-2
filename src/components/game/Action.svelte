@@ -25,7 +25,7 @@
 
 		cursor: pointer;
 
-		transition: all var(--animation-speed) ease-in-out;
+		/*transition: all var(--animation-speed) ease-in-out;*/
 		margin: 5px;
 		padding: 0 5px;
 		background-color: var(--action-background-color);
