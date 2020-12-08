@@ -41,10 +41,10 @@ const navigate = (to, props) => {
 
 const back = () => {
 	history.back();
-	onPopState();
 };
 
 const onPopState = () => {
+	console.log("Back");
 	update(state => {
 		let route = state.history.pop();
 		

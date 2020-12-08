@@ -1,5 +1,5 @@
 <script>
-	import router from "../store/runtime/router";
+	import router from "../../store/runtime/router";
 
 	let route = null;
 

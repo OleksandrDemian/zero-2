@@ -1,6 +1,6 @@
 <script>
-	import PwaInstallableStore from "../store/runtime/pwaInstallStore";
-	import Button from "./ui/Button.svelte";
+	import PwaInstallableStore from "../../store/runtime/pwaInstallStore";
+	import Button from "../ui/Button.svelte";
 
 	const onInstall = () => {
 		const prompt = PwaInstallableStore.getPrompt();

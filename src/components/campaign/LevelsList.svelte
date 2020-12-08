@@ -4,7 +4,7 @@
 	import PersistentStore, {REACHED_LEVEL} from "../../store/persistant/persistentStore";
 	import {createEventDispatcher} from "svelte";
 	import {groupLevels} from "../../utils/levelsGrouper";
-	import ProgressBar from "../ProgressBar.svelte";
+	import ProgressBar from "../game/ProgressBar.svelte";
 	import SnackBarStore from "../../store/runtime/snackBarStore";
 
 	const dispatch = createEventDispatcher();

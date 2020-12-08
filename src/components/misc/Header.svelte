@@ -1,5 +1,5 @@
 <script>
-	import router from "../store/runtime/router";
+	import router from "../../store/runtime/router";
 
 	const goBack = () => active && router.back();
 	let active = false;

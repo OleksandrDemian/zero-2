@@ -1,15 +1,15 @@
 <script>
 	import GameStore from "../store/runtime/gameStore";
 	import Button from "../components/ui/Button.svelte";
-	import PwaInstallButton from "../components/PwaInstallButton.svelte";
+	import PwaInstallButton from "../components/misc/PwaInstallButton.svelte";
 	import Separator from "../components/ui/Separator.svelte";
 	import PersistentStore, {FIRST_TIME} from "../store/persistant/persistentStore";
 	import SnackBarStore from "../store/runtime/snackBarStore";
 	import FirstTimeMessage from "../components/snackBar/custom/FirstTimeMessage.svelte";
-	import Version from "../components/Version.svelte";
+	import Version from "../components/misc/Version.svelte";
 	import Column from "../components/containers/Column.svelte";
 	import router from "../store/runtime/router";
-	import Follow from "../components/Follow.svelte";
+	import Follow from "../components/misc/Follow.svelte";
 
 	const startPlay = () => router.navigate("play");
 	const showHowToPlay = () => router.navigate("how-it-works");

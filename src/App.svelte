@@ -1,8 +1,8 @@
 <script>
 	import router from "./store/runtime/router";
 	import SnackBar from "./components/snackBar/SnackBar.svelte";
-	import Router from "./components/Router.svelte";
-	import Header from "./components/Header.svelte";
+	import Router from "./components/misc/Router.svelte";
+	import Header from "./components/misc/Header.svelte";
 
 	import Home from "./views/Home.svelte";
 	import Campaign from "./views/Campaign.svelte";
@@ -12,7 +12,7 @@
 	import TimeThroneIntro from "./views/TimeThroneIntro.svelte";
 	import Game from "./views/Game.svelte";
 	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
-	import ProgressBar from "./components/ProgressBar.svelte";
+	import ProgressBar from "./components/game/ProgressBar.svelte";
 	import Play from "./views/Play.svelte";
 	import Objectives from "./views/Objectives.svelte";
 

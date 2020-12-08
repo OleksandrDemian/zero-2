@@ -3,7 +3,7 @@
 	import Button from "../ui/Button.svelte";
 	import {onDestroy} from "svelte";
 	import DIFFICULTIES from "../../data/difficultySettings";
-	import ProgressBar from "../ProgressBar.svelte";
+	import ProgressBar from "./ProgressBar.svelte";
 	import Separator from "../ui/Separator.svelte";
 	import router from "../../store/runtime/router";
 	import SimpleGame from "./SimpleGame.svelte";
