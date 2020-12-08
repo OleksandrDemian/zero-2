@@ -12,6 +12,7 @@ Play one of three modes:
 
 ## :Link: Links
 - [Playable version](https://zero.oleksandrdemian.tech/)
+- [Playable dev version](https://zero-dev.oleksandrdemian.tech/)
 - [Game Jolt](https://gamejolt.com/games/zero-2/562698)
 - [Follow on twitter for updates](https://twitter.com/9zemian5)
 - [We make games](https://www.wemake.games/games/zero-2)
@@ -20,6 +21,11 @@ Play one of three modes:
 - Svelte
 
 ## :rocket: Releases
+#### 08/12/2020 - 0.2.5-alpha
+- Setup [dev](https://zero-dev.oleksandrdemian.tech/) environment
+- Refactor game store
+- General improvements
+
 #### 07/12/2020 - 0.2.4-alpha
 - Cleanup home screen: move all the play modes under "Play" section
 - Use same label for back buttons: each section had different label for back button (back, go back, nope).

@@ -2,10 +2,14 @@
 	import SnackBarStore from "../../store/runtime/snackBarStore";
 
 	const onClose = () => SnackBarStore.shift();
+	const onBackgroundClick = () => {
+		//todo: onClose() only if required
+		//todo: exclude .snack-bar from click
+	}
 </script>
 
 { #if $SnackBarStore.snacks.length > 0 }
-	<div class="container" on:click={onClose}>
+	<div class="container" on:click={onBackgroundClick}>
 		<div class="snack-bar">
 			<div class="head">
 				<span class="title">{$SnackBarStore.snacks[0].title}</span>
