@@ -1,4 +1,5 @@
 export const DIFFICULTY_TUTORIAL = Object.freeze({
+	name: "Tutorial",
 	maxActionValue: 5,
 	allowMultiplication: false,
 	allowDivision: false,
@@ -9,6 +10,7 @@ export const DIFFICULTY_TUTORIAL = Object.freeze({
 });
 
 export const DIFFICULTY_EASY = Object.freeze({
+	name: "Easy",
 	maxActionValue: 6,
 	allowMultiplication: false,
 	allowDivision: false,
@@ -19,6 +21,7 @@ export const DIFFICULTY_EASY = Object.freeze({
 });
 
 export const DIFFICULTY_MEDIUM = Object.freeze({
+	name: "Medium",
 	minActionValue: 4,
 	maxActionValue: 8,
 	allowMultiplication: false,
@@ -32,6 +35,7 @@ export const DIFFICULTY_MEDIUM = Object.freeze({
 });
 
 export const DIFFICULTY_HARD = Object.freeze({
+	name: "Hard",
 	minActionValue: 5,
 	maxActionValue: 10,
 	allowMultiplication: true,
@@ -45,6 +49,7 @@ export const DIFFICULTY_HARD = Object.freeze({
 });
 
 export const DIFFICULTY_SUPER_HARD = Object.freeze({
+	name: "Super hard",
 	minActionValue: 6,
 	maxActionValue: 14,
 	allowMultiplication: true,
@@ -58,6 +63,7 @@ export const DIFFICULTY_SUPER_HARD = Object.freeze({
 });
 
 export const DIFFICULTY_EXTREME = Object.freeze({
+	name: "Extreme",
 	minActionValue: 8,
 	maxActionValue: 20,
 	allowMultiplication: true,

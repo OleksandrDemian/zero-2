@@ -63,18 +63,18 @@
 					stageClear();
 				}
 			} else if (value.gameState === GAME_STATE.LOSE) {
-				level--;
-				stop();
-				nextLevel();
+				GameStore.restoreLevel();
 			}
 		}
 	});
 
 	const nextLevel = () => {
+		const stageSetting = STAGES[stage];
+
 		level++;
 		seconds ++;
 
-		GameStore.createRandomLevel(level, STAGES[stage].difficulty);
+		GameStore.createRandomLevel(stageSetting.name + " " + level, stageSetting.difficulty);
 
 		stop();
 		intervalId = setInterval(() => {
@@ -125,13 +125,10 @@
 		unsubscribe();
 	});
 
-	const onLevel = ({detail}) => {
-		if (detail === level) {
-			GameStore.createRandomLevel(level);
-		}
+	const onRestart = () => {
+		GameStore.restoreLevel();
 	};
 
-	GameStore.resetLevelIndex();
 	nextStage();
 </script>
 
@@ -146,7 +143,7 @@
 {:else if state === STATE.IN_PROGRESS}
 	<!--IN PROGRESS-->
 
-	<SimpleGame on:level={onLevel} />
+	<SimpleGame on:restart={onRestart} />
 {:else if state === STATE.STAGE_CLEAR}
 	<!--STAGE CLEAR-->
 

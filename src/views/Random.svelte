@@ -3,13 +3,18 @@
 	import SimpleGame from "../components/game/SimpleGame.svelte";
 
 	export let difficulty = null;
+	let index = 0;
 
-	const onLevel = ({detail}) => {
-		GameStore.createRandomLevel(detail, difficulty);
+	const onNext = () => {
+		index++;
+		GameStore.createRandomLevel(`${difficulty.name} [${index}]`, difficulty);
 	};
 
-	GameStore.resetLevelIndex();
-	onLevel({detail: 1});
+	const onRestart = () => {
+		GameStore.restoreLevel();
+	};
+
+	onNext();
 </script>
 
-<SimpleGame on:level={onLevel} />
+<SimpleGame on:next={onNext} on:restart={onRestart} />

@@ -13,7 +13,6 @@
 	};
 
 	GameStore.setState(GAME_STATE.NONE);
-	GameStore.resetLevelIndex();
 </script>
 
 <LevelsList on:click={onLevel} />
