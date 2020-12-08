@@ -2,6 +2,7 @@ export const LEVEL_INDEX = "levelIndex";
 export const REACHED_LEVEL = "reachedLevel";
 export const PWA_INSTALL_SHOWN = "pwaInstallShown";
 export const FIRST_TIME = "firstTime";
+export const OBJECTIVES_STORED_ID = "objectives";
 
 const DEFAULT_DATA = {
 	levelIndex: 0,

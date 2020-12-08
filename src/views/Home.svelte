@@ -13,6 +13,7 @@
 
 	const startPlay = () => router.navigate("play");
 	const showHowToPlay = () => router.navigate("how-it-works");
+	const showObjectives = () => router.navigate("objectives");
 
 	if (PersistentStore.get(FIRST_TIME) !== false) {
 		setTimeout(() => {
@@ -33,6 +34,8 @@
 	<Separator />
 	<Button on:click={showHowToPlay} colorScheme="orange" size="medium">How to play</Button>
 	<Separator />
+<!--	<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>-->
+<!--	<Separator />-->
 	<PwaInstallButton />
 
 	<Separator />

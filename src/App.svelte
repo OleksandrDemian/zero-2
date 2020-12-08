@@ -14,6 +14,7 @@
 	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
 	import ProgressBar from "./components/ProgressBar.svelte";
 	import Play from "./views/Play.svelte";
+	import Objectives from "./views/Objectives.svelte";
 
 	router.addRoute("", Home);
 	router.addRoute("play", Play, {showBack: true});
@@ -24,6 +25,7 @@
 	router.addRoute("time-intro", TimeThroneIntro, {showBack: true});
 	router.addRoute("time-game", TimeAttack, {showBack: true});
 	router.addRoute("how-it-works", HowToPlay, {showBack: true});
+	router.addRoute("objectives", Objectives, {showBack: true});
 </script>
 
 <SnackBar />

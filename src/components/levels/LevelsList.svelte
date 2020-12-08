@@ -30,7 +30,7 @@
 
 <div class="container">
 	{ #each GROUPS as group }
-		<h3>{levels[group].title}</h3>
+		<h3 class="on-background-text">{levels[group].title}</h3>
 		<div class="levels">
 			{ #each levels[group].levels as level, i }
 				<LevelItem on:click={triggerLevel(level.index)} level={level} done={reachedLevel > level.index} active={reachedLevel === level.index} />
