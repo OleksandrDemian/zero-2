@@ -8,19 +8,20 @@
 	import Separator from "../ui/Separator.svelte";
 
 	const dispatch = createEventDispatcher();
-	const onLoadLevel = (levelIndex) => () => dispatch("level", levelIndex);
+	const onNext = () => dispatch("next");
+	const onRestart = () => dispatch("restart");
 </script>
 
 <Column>
-	<NumbersBoard title={"Stage " + $GameStore.title} />
+	<NumbersBoard title={$GameStore.title} />
 	<ActionsBoard />
 </Column>
 <Separator />
 
 {#if $GameStore.gameState === GAME_STATE.WIN}
-	<Button on:click={onLoadLevel($GameStore.levelIndex++)} colorScheme="green" bold>Next level</Button>
+	<Button on:click={onNext} colorScheme="green" bold>Next level</Button>
 {:else if $GameStore.gameState === GAME_STATE.LOSE}
-	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="red" bold>Try again</Button>
+	<Button on:click={onRestart} colorScheme="red" bold>Try again</Button>
 {:else if $GameStore.gameState !== GAME_STATE.GAME_OVER}
-	<Button on:click={onLoadLevel($GameStore.levelIndex)} colorScheme="blue" bold>Restart</Button>
+	<Button on:click={onRestart} colorScheme="blue" bold>Restart</Button>
 {/if}

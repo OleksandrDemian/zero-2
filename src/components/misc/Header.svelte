@@ -1,5 +1,5 @@
 <script>
-	import router from "../store/runtime/router";
+	import router from "../../store/runtime/router";
 
 	const goBack = () => active && router.back();
 	let active = false;
@@ -12,7 +12,7 @@
 <header class:active={active}>
 	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goBack} />
 
-	<h1>Zero.2</h1>
+	<h1 class="on-background-text">Zero.2</h1>
 
 	<img width="32" height="32" src="./icons/back.svg" alt="close" />
 </header>

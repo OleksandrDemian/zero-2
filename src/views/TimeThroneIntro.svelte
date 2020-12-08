@@ -15,7 +15,7 @@
 </script>
 
 <Column>
-	<h3 class="center">Time throne</h3>
+	<h3 class="center on-background-text">Time throne</h3>
 	<p class="center">Are you sure you want to enter the time cave?</p>
 
 	<Separator />

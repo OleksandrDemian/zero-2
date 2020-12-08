@@ -1,6 +1,6 @@
 <script>
 	import GameStore, {GAME_STATE} from "../store/runtime/gameStore";
-	import LevelsList from "../components/levels/LevelsList.svelte";
+	import LevelsList from "../components/campaign/LevelsList.svelte";
 	import SimpleGame from "../components/game/SimpleGame.svelte";
 	import router from "../store/runtime/router";
 	import Separator from "../components/ui/Separator.svelte";
@@ -13,7 +13,6 @@
 	};
 
 	GameStore.setState(GAME_STATE.NONE);
-	GameStore.resetLevelIndex();
 </script>
 
 <LevelsList on:click={onLevel} />

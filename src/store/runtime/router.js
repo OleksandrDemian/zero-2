@@ -4,13 +4,15 @@ const DEFAULT_ROUTE_SETTINGS = {
 	showBack: false
 };
 
+const DEFAULT_ROUTE = {
+	to: "",
+	props: null
+};
+
 const {set, get, subscribe, update} = store({
 	routes: {},
 	history: [],
-	current: {
-		to: "",
-		props: null
-	}
+	current: DEFAULT_ROUTE
 });
 
 const addRoute = (to, component, settings = null) => {
@@ -38,14 +40,25 @@ const navigate = (to, props) => {
 };
 
 const back = () => {
+	history.back();
+};
+
+const onPopState = () => {
+	console.log("Back");
 	update(state => {
-		state.current = state.history.pop();
+		let route = state.history.pop();
+		
+		if(route == null){
+			route = DEFAULT_ROUTE;
+		}
+		
+		state.current = route;
 		return {...state};
 	});
 };
 
 const getRoute = (to) => get().routes[to];
-window.addEventListener("popstate", back, false);
+window.addEventListener("popstate", onPopState, false);
 
 const router = {
 	subscribe,

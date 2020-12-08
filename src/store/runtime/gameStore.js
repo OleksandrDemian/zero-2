@@ -3,7 +3,6 @@ import LEVELS from "../../data/levels";
 import NumbersStore from "./numbersStore";
 import ActionsStore from "./actionsStore";
 import {createLevel} from "../../utils/levelGenerator";
-import PersistentStore, {LEVEL_INDEX, REACHED_LEVEL} from "../persistant/persistentStore";
 
 export const GAME_STATE = {
 	NONE: -1,
@@ -14,54 +13,41 @@ export const GAME_STATE = {
 };
 
 const { set, update, subscribe } = writable({
-	levelIndex: null,
 	title: "🤡",
 	gameState: GAME_STATE.IN_PROGRESS,
-	levelPref: null,
 	mode: null
 });
 
 const storeHelper = {
-	levelIndex: null,
 	levelPref: null
 };
 
 const loadLevel = (levelIndex) => {
-	let level = null;
-	
-	if(levelIndex == null){
-		levelIndex = PersistentStore.get(LEVEL_INDEX);
+	const level = LEVELS[levelIndex];
+	console.log(levelIndex)
+	if(level == null){
+		//todo: handle the end of campaign
+		//todo: this statement can be also triggered by some error (?)
+		update((state) => ({
+			...state,
+			title: "Victory!",
+			gameState: GAME_STATE.GAME_OVER
+		}));
 	} else {
-		PersistentStore.set(LEVEL_INDEX, levelIndex);
-		if(levelIndex > PersistentStore.get(REACHED_LEVEL)){
-			PersistentStore.set(REACHED_LEVEL, levelIndex);
-		}
-		PersistentStore.save();
+		setLevel(level);
 	}
-	
-	if(storeHelper.levelIndex !== levelIndex){
-		level = LEVELS[levelIndex];
-		
-		if(level == null){
-			update((state) => ({
-				...state,
-				title: "Victory!",
-				gameState: GAME_STATE.GAME_OVER
-			}));
-			
-			//out of levels, WIN!!!!
-			return;
-		}
-		
-		storeHelper.levelPref = level;
-		storeHelper.levelIndex = levelIndex;
-	} else {
-		level = storeHelper.levelPref;
-	}
+};
+
+const createRandomLevel = (name, settings) => {
+	const level = createLevel({ ...settings, name });
+	setLevel(level);
+};
+
+const setLevel = (level) => {
+	storeHelper.levelPref = level;
 	
 	update((state) => ({
 		...state,
-		levelIndex,
 		title: level.name,
 		gameState: GAME_STATE.IN_PROGRESS
 	}));
@@ -70,28 +56,10 @@ const loadLevel = (levelIndex) => {
 	ActionsStore.init(level.actions);
 };
 
-const createRandomLevel = (levelIndex, settings) => {
-	let level = null;
+export const restoreLevel = () => {
+	const level = storeHelper.levelPref;
 	
-	if(storeHelper.levelIndex !== levelIndex){
-		level = createLevel({
-			name: "G-" + levelIndex,
-			...settings
-		});
-		
-		storeHelper.levelIndex = levelIndex;
-		storeHelper.levelPref = level;
-	} else {
-		level = storeHelper.levelPref;
-	}
-	
-	update((state) => ({
-		...state,
-		levelIndex,
-		title: level.name,
-		gameState: GAME_STATE.IN_PROGRESS
-	}));
-	
+	setState(GAME_STATE.IN_PROGRESS);
 	NumbersStore.init(level.numbers);
 	ActionsStore.init(level.actions);
 };
@@ -124,21 +92,17 @@ const checkLose = (actions) => {
 	}
 };
 
-const updateLevelIndex = (index) => {
-	storeHelper.levelIndex = index;
-	update(state => ({...state, levelIndex: index }));
-};
-
 const setMode = (mode) => update(state => ({...state, mode }));
 const setState = (gameState) => update(state => ({...state, gameState }));
-const resetLevelIndex = () => updateLevelIndex(-1);
 
 const GameStore = {
 	subscribe,
 	
+	setLevel,
 	loadLevel,
 	createRandomLevel,
-	resetLevelIndex,
+	restoreLevel,
+	
 	setMode,
 	setState
 };

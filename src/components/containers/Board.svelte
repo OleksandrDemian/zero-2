@@ -4,7 +4,7 @@
 
 <div class="container">
 	{#if title}
-		<h3 class="center">{title}</h3>
+		<h3 class="center on-background-text">{title}</h3>
 	{/if}
 	<div class="board">
 		<slot></slot>

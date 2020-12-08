@@ -1,6 +1,6 @@
 <script>
-	import PwaInstallableStore from "../store/runtime/pwaInstallStore";
-	import Button from "./ui/Button.svelte";
+	import PwaInstallableStore from "../../store/runtime/pwaInstallStore";
+	import Button from "../ui/Button.svelte";
 
 	const onInstall = () => {
 		const prompt = PwaInstallableStore.getPrompt();
@@ -17,7 +17,7 @@
 </script>
 
 { #if $PwaInstallableStore.installable }
-<!--	<h3>Install</h3>-->
+<!--	<h3 class="on-background-text">Install</h3>-->
 <!--	<span>You can get "native-like" behaviour by installing it as PWA. PWA will offer you the following benefits:</span>-->
 <!--	<ul>-->
 <!--		<li>No more annoying top-bar</li>-->

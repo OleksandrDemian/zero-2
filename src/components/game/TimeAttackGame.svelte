@@ -3,7 +3,7 @@
 	import Button from "../ui/Button.svelte";
 	import {onDestroy} from "svelte";
 	import DIFFICULTIES from "../../data/difficultySettings";
-	import ProgressBar from "../ProgressBar.svelte";
+	import ProgressBar from "./ProgressBar.svelte";
 	import Separator from "../ui/Separator.svelte";
 	import router from "../../store/runtime/router";
 	import SimpleGame from "./SimpleGame.svelte";
@@ -63,18 +63,18 @@
 					stageClear();
 				}
 			} else if (value.gameState === GAME_STATE.LOSE) {
-				level--;
-				stop();
-				nextLevel();
+				GameStore.restoreLevel();
 			}
 		}
 	});
 
 	const nextLevel = () => {
+		const stageSetting = STAGES[stage];
+
 		level++;
 		seconds ++;
 
-		GameStore.createRandomLevel(level, STAGES[stage].difficulty);
+		GameStore.createRandomLevel(stageSetting.name + " " + level, stageSetting.difficulty);
 
 		stop();
 		intervalId = setInterval(() => {
@@ -125,36 +125,33 @@
 		unsubscribe();
 	});
 
-	const onLevel = ({detail}) => {
-		if (detail === level) {
-			GameStore.createRandomLevel(level);
-		}
+	const onRestart = () => {
+		GameStore.restoreLevel();
 	};
 
-	GameStore.resetLevelIndex();
 	nextStage();
 </script>
 
-<h3 class="center" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
+<h3 class="center on-background-text" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
 
 {#if state === STATE.ATTACK_COMPLETE}
 	<!--VICTORY-->
 
-	<h1 class="center green">Time throne is yours now</h1>
-	<h3 class="center">Time Throne is yours now. You can be proud of yourself</h3>
+	<h1 class="center green on-background-text">Time throne is yours now</h1>
+	<h3 class="center on-background-text">Time Throne is yours now. You can be proud of yourself</h3>
 	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {:else if state === STATE.IN_PROGRESS}
 	<!--IN PROGRESS-->
 
-	<SimpleGame on:level={onLevel} />
+	<SimpleGame on:restart={onRestart} />
 {:else if state === STATE.STAGE_CLEAR}
 	<!--STAGE CLEAR-->
 
-	<h1 class="center green">Stage clear</h1>
+	<h1 class="center green on-background-text">Stage clear</h1>
 
 	<Column>
 		<ProgressBar fill={stage+1} max={STAGES.length} />
-		<h3 class="center">The Time Throne is nearer with each stage.</h3>
+		<h3 class="center on-background-text">The Time Throne is nearer with each stage.</h3>
 		<Separator />
 		<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
 		<Separator />
@@ -164,11 +161,11 @@
 {:else if state === STATE.TIME_OUT}
 	<!--TIME OUT-->
 
-	<h1 class="center red">Game over</h1>
+	<h1 class="center red on-background-text">Game over</h1>
 
 	<Column>
 		<ProgressBar fill={stage} max={STAGES.length} />
-		<h3 class="center">You didn't manage to become the time king. Maybe the next time.</h3>
+		<h3 class="center on-background-text">You didn't manage to become the time king. Maybe the next time.</h3>
 		<Separator />
 		<p class="center">Try to exercise yourself in campaign or random play</p>
 		<Separator />
