@@ -10,6 +10,7 @@
 	import Column from "../components/containers/Column.svelte";
 	import router from "../store/runtime/router";
 	import Follow from "../components/misc/Follow.svelte";
+	import ViewContainer from "../components/containers/ViewContainer.svelte";
 
 	const startPlay = () => router.navigate("play");
 	const showHowToPlay = () => router.navigate("how-it-works");
@@ -29,16 +30,18 @@
 	}
 </script>
 
-<Column>
-	<Button on:click={startPlay} colorScheme="green" size="medium">Play</Button>
-	<Separator />
-	<Button on:click={showHowToPlay} colorScheme="orange" size="medium">How to play</Button>
-	<Separator />
-<!--	<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>-->
-<!--	<Separator />-->
-	<PwaInstallButton />
+<ViewContainer>
+	<Column>
+		<Button on:click={startPlay} colorScheme="green" size="medium">Play</Button>
+		<Separator />
+		<Button on:click={showHowToPlay} colorScheme="orange" size="medium">How to play</Button>
+		<Separator />
+		<!--	<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>-->
+		<!--	<Separator />-->
+		<PwaInstallButton />
 
-	<Separator />
-	<Follow />
-	<Version />
-</Column>
+		<Separator />
+		<Follow />
+		<Version />
+	</Column>
+</ViewContainer>
