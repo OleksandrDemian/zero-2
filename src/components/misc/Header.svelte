@@ -10,11 +10,11 @@
 </script>
 
 <header class:active={active}>
-	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goBack} />
+<!--	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goBack} />-->
 
 	<h1 class="on-background-text">Zero.2</h1>
 
-	<img width="32" height="32" src="./icons/back.svg" alt="close" />
+<!--	<img width="32" height="32" src="./icons/back.svg" alt="close" />-->
 </header>
 
 <style>

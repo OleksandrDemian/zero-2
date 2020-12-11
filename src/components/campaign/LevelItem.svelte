@@ -21,7 +21,7 @@
 <style>
 	div.container {
 		min-width: var(--board-item-size);
-		min-height: 50px;
+		padding: 5px 15px;
 
 		display: flex;
 		flex-direction: column;
@@ -47,6 +47,6 @@
 
 	span.name {
 		color: var(--number-text-color);
-		font-size: var(--medium-font-size);
+		font-size: var(--small-font-size);
 	}
 </style>

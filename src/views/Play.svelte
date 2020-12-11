@@ -17,7 +17,8 @@
 		<Button on:click={startRandom} colorScheme="orange" size="medium">Random</Button>
 		<Separator />
 		<Button on:click={startTimeAttack} colorScheme="red" size="medium">Time Throne</Button>
-		<Separator />
-		<Button on:click={() => router.back()} colorScheme="red" outline size="medium">Back</Button>
 	</Column>
+
+	<Separator />
+	<Button on:click={() => router.back()} colorScheme="red" outline size="medium">Back</Button>
 </ViewContainer>

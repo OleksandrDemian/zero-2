@@ -36,12 +36,12 @@
 		<Separator />
 		<Button on:click={showHowToPlay} colorScheme="orange" size="medium">How to play</Button>
 		<Separator />
-		<!--	<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>-->
-		<!--	<Separator />-->
+<!--			<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>-->
+<!--			<Separator />-->
 		<PwaInstallButton />
-
-		<Separator />
-		<Follow />
-		<Version />
 	</Column>
+
+	<Separator />
+	<Follow />
+	<Version />
 </ViewContainer>
