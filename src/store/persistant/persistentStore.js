@@ -2,6 +2,7 @@ export const REACHED_LEVEL = "reachedLevel";
 export const PWA_INSTALL_SHOWN = "pwaInstallShown";
 export const FIRST_TIME = "firstTime";
 export const OBJECTIVES_STORED_ID = "objectives";
+export const PLAYER_ID = "playerId";
 
 const DEFAULT_DATA = {
 	reachedLevel: 0

@@ -9,10 +9,9 @@
 	import TimeAttack from "./views/TimeAttack.svelte";
 	import Random from "./views/Random.svelte";
 	import HowToPlay from "./views/HowToPlay.svelte";
-	import TimeThroneIntro from "./views/TimeThroneIntro.svelte";
+	import TimeAttackIntro from "./views/TimeAttackIntro.svelte";
 	import Game from "./views/Game.svelte";
 	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
-	import ProgressBar from "./components/game/ProgressBar.svelte";
 	import Play from "./views/Play.svelte";
 	import Objectives from "./views/Objectives.svelte";
 
@@ -22,7 +21,7 @@
 	router.addRoute("random", Random, {showBack: true});
 	router.addRoute("campaign", Campaign, {showBack: true});
 	router.addRoute("level", Game, {showBack: true});
-	router.addRoute("time-intro", TimeThroneIntro, {showBack: true});
+	router.addRoute("time-intro", TimeAttackIntro, {showBack: true});
 	router.addRoute("time-game", TimeAttack, {showBack: true});
 	router.addRoute("how-it-works", HowToPlay, {showBack: true});
 	router.addRoute("objectives", Objectives, {showBack: true});

@@ -4,7 +4,7 @@
 	<ul>
 		<li><b>Campaign</b> (good for beginners).</li>
 		<li><b>Random</b> (have some fun).</li>
-		<li>Conquer <b>Time Throne</b> by completing set of challenging challenges. Pay attention to the Math-Time King.</li>
+		<li><b>Time Attack</b>: completing set of challenging challenges. Pay attention to teh timer.</li>
 	</ul>
 
 	<p>Check "How to play" section for more details.</p>

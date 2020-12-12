@@ -1,47 +1,43 @@
 <script>
 	import SnackBarStore from "../../store/runtime/snackBarStore";
 
+	let snack = null;
+
+	$: {
+		snack = $SnackBarStore.snacks[0];
+	}
+
 	const onClose = () => SnackBarStore.shift();
+	// const onBackgroundClick = (e) => {
+	// 	if(snack){
+	// 		if(e.target === e.currentTarget) {
+	// 			if(snack.closeOnBackground === true){
+	// 				onClose();
+	// 			}
+	// 		}
+	// 	}
+	// }
 </script>
 
-{ #if $SnackBarStore.snacks.length > 0 }
-	<div class="container" on:click={onClose}>
+{ #if snack != null }
+<!--	<div class="container" on:click={onBackgroundClick}>-->
+	<div class="container">
 		<div class="snack-bar">
 			<div class="head">
-				<span class="title">{$SnackBarStore.snacks[0].title}</span>
+				<span class="title">{snack.title}</span>
 				<img class="close" src="/icons/close.svg" on:click={onClose} width="24" height="24" />
 			</div>
 
-			{#if $SnackBarStore.snacks[0].child}
-				<svelte:component this={$SnackBarStore.snacks[0].child} />
-			{:else if $SnackBarStore.snacks[0].message}
-				<span class="message">{$SnackBarStore.snacks[0].message}</span>
+			{#if snack.child}
+				<svelte:component this={snack.child} />
+			{:else if snack.message}
+				<span class="message">{snack.message}</span>
 			{/if}
 		</div>
 	</div>
 { /if }
 
 <style>
-	@keyframes snack {
-		from {
-			transform: translateY(100%)
-		}
-		to {
-			transform: translateY(0)
-		}
-	}
-
-	@keyframes background {
-		from {
-			background-color: rgba(38, 70, 83, 0);
-			backdrop-filter: blur(0);
-		}
-		to {
-			background-color: rgba(38, 70, 83, 0.5);
-			backdrop-filter: blur(4px);
-		}
-	}
-
     div.container {
         position: fixed;
 
@@ -58,10 +54,6 @@
 		background-color: rgba(38, 70, 83, 0.5);
 		backdrop-filter: blur(4px);
 
-		animation-name: background;
-		animation-timing-function: ease-in-out;
-		animation-duration: 0.2s;
-
 		z-index: 100;
     }
 
@@ -76,10 +68,6 @@
 		font-size: var(--board-item-font-size);
 
 		padding: 20px 20px 45px 20px;
-
-		animation-name: snack;
-		animation-timing-function: ease-in-out;
-		animation-duration: 0.2s;
     }
 
 	div.head {

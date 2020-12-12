@@ -4,12 +4,15 @@
 	import Button from "../components/ui/Button.svelte";
 	import router from "../store/runtime/router";
 	import Separator from "../components/ui/Separator.svelte";
+	import ViewContainer from "../components/containers/ViewContainer.svelte";
 </script>
 
-<h2 class="center on-background-text">Objectives</h2>
-{#each Objectives.list() as objective}
-	<Objective objective={objective} />
-{/each}
+<ViewContainer>
+	<h2 class="center on-background-text">Objectives</h2>
+	{#each Objectives.list() as objective}
+		<Objective objective={objective} />
+	{/each}
 
-<Separator />
-<Button outline colorScheme="red" size="medium" on:click={() => router.back()}>Back</Button>
+	<Separator />
+	<Button outline colorScheme="red" size="medium" on:click={() => router.back()}>Back</Button>
+</ViewContainer>
