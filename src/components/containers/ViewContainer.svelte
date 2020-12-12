@@ -30,7 +30,6 @@
 					'overflow: hidden;' +
 					'z-index: -1;' +
 					`margin-bottom: -${style.height};` +
-					`transform: translateX(${((t * OFFSET) - OFFSET)}px);` +
 					`opacity: ${t};`
 		};
 	};
@@ -49,6 +48,5 @@
 		flex-grow: 1;
 
 		max-width: 100%;
-		overflow: hidden;
 	}
 </style>

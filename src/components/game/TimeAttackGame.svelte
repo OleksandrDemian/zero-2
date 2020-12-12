@@ -17,32 +17,32 @@
 		TIME_OUT: 3
 	};
 
-	const TIME_LIMIT = 20;
+	const TIME_LIMIT = 15;
 
 	const STAGES = [
 		{
 			difficulty: DIFFICULTIES.TUTORIAL,
 			name: "Cave",
-			levels: 2,
+			levels: 4,
 			bonus: 4
 		},
 		{
 			difficulty: DIFFICULTIES.EASY,
 			name: "Void",
-			levels: 3,
+			levels: 4,
 			bonus: 5
 		},
 		{
 			difficulty: DIFFICULTIES.MEDIUM,
 			name: "Platform",
-			levels: 4,
-			bonus: 10
+			levels: 2,
+			bonus: 6
 		},
 		{
 			difficulty: DIFFICULTIES.HARD,
 			name: "Hall",
-			levels: 4,
-			bonus: 10
+			levels: 1,
+			bonus: 1
 		},
 	];
 
@@ -137,8 +137,8 @@
 {#if state === STATE.ATTACK_COMPLETE}
 	<!--VICTORY-->
 
-	<h1 class="center green on-background-text">Time throne is yours now</h1>
-	<h3 class="center on-background-text">Time Throne is yours now. You can be proud of yourself</h3>
+	<h1 class="center green on-background-text">Congrats</h1>
+	<h3 class="center on-background-text">You can be proud of yourself</h3>
 	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {:else if state === STATE.IN_PROGRESS}
 	<!--IN PROGRESS-->
@@ -151,7 +151,6 @@
 
 	<Column>
 		<ProgressBar fill={stage+1} max={STAGES.length} />
-		<h3 class="center on-background-text">The Time Throne is nearer with each stage.</h3>
 		<Separator />
 		<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
 		<Separator />

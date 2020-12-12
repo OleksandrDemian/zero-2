@@ -16,7 +16,7 @@
 		<Separator />
 		<Button on:click={startRandom} colorScheme="orange" size="medium">Random</Button>
 		<Separator />
-		<Button on:click={startTimeAttack} colorScheme="red" size="medium">Time Throne</Button>
+		<Button on:click={startTimeAttack} colorScheme="red" size="medium">Time Attack</Button>
 	</Column>
 
 	<Separator />
