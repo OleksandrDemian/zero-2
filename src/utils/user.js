@@ -8,10 +8,6 @@ const check = () => {
 		PersistentStore.set(PLAYER_ID, playerId);
 		PersistentStore.save();
 	}
-	
-	fetch(`http://infinitysasha.altervista.org/zero-2/index.php?playerId=${playerId}`, {
-		mode: "no-cors"
-	}).then(() => console.log("ok"));
 };
 
 const User = {

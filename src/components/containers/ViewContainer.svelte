@@ -30,7 +30,6 @@
 					'overflow: hidden;' +
 					'z-index: -1;' +
 					`margin-bottom: -${style.height};` +
-					`transform: translateX(${((t * OFFSET) - OFFSET)}px);` +
 					`opacity: ${t};`
 		};
 	};

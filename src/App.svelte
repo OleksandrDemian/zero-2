@@ -44,12 +44,13 @@
 
 		margin-left: auto;
 		margin-right: auto;
+		max-height: 100vh;
+		min-height: 100vh;
 	}
 
 	@media screen and (max-width: 500px) {
 		main {
 			padding: 45px;
-			min-height: 100vh;
 		}
 	}
 </style>

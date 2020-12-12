@@ -37,18 +37,26 @@
 			{/each}
 		</div>
 	{/each}
-
 </div>
 
 <style>
 	div.container {
 		width: 100%;
+		overflow: scroll;
+
+		-ms-overflow-style: none;  /* IE and Edge */
+		scrollbar-width: none;  /* Firefox */
 	}
 
 	div.levels {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		grid-gap: 10px;
+	}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	::-webkit-scrollbar {
+		display: none;
 	}
 
 	@media screen and (max-width: 500px) {
