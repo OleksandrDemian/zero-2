@@ -8,7 +8,9 @@
 <span class="progress-label">Progress</span>
 <div class="line">
 	<div class="meter" style={`width: ${fillPerc}%;`}>
-		<span class="progress">{Math.round(fillPerc)}%</span>
+		{ #if fillPerc > 0 }
+			<span class="progress">{Math.round(fillPerc)}%</span>
+		{/if}
 	</div>
 </div>
 
