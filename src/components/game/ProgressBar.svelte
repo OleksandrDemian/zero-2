@@ -2,56 +2,47 @@
 	export let fill;
 	export let max;
 
-	const fillPerc = (fill / (max-1)) * 100;
+	const fillPerc = (fill / max) * 100;
 </script>
 
-<div class="flex">
-	{#each {length: max} as _, i}
-		<div class="level" class:fill={fill > i}></div>
-	{/each}
-
-	<div class="line">
-		<span class="meter" style={`width: ${fillPerc}%;`}></span>
+<span class="progress-label">Progress</span>
+<div class="line">
+	<div class="meter" style={`width: ${fillPerc}%;`}>
+		<span class="progress">{Math.round(fillPerc)}%</span>
 	</div>
 </div>
 
 <style>
-	div.flex {
-		position: relative;
-
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin: 15px 0;
-	}
-
 	div.line {
-		position: absolute;
-		background-color: var(--red);
+		background-color: transparent;
+		border: 2px solid var(--blue);
+		border-radius: var(--border-radius);
 		width: 100%;
-		padding: 0 5px;
+		padding: 2px;
 
-		height: 10px;
+		height: 30px;
 		z-index: -2;
 	}
 
-	span.meter {
+	div.meter {
 		background-color: var(--green);
-		display: block;
+		border-radius: var(--border-radius);
+		color: white;
 		height: 100%;
 		z-index: -1;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	div.level {
-		height: 30px;
-		width: 30px;
-		border: 5px solid var(--red);
-		background-color: var(--red);
-		border-radius: var(--border-radius);
+	span {
+		font-size: var(--small-font-size);
 	}
 
-	div.level.fill {
-		background-color: var(--green);
-		border: 5px solid var(--green);
+	span.progress-label {
+		text-align: center;
+		display: block;
+		margin: 10px 0;
 	}
 </style>

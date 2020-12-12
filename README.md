@@ -8,7 +8,7 @@ Zero.2 is all about finding patterns between numbers and operations.
 Play one of three modes:
 - Campaign (good for beginners).
 - Random (have some fun).
-- Conquer Time Throne by completing set of challenging challenges. Pay attention to the Math-Time King.
+- Time attack: complete set of challenging challenges. Pay attention to the timer.
 
 ## :Link: Links
 - [Playable version](https://zero.oleksandrdemian.tech/)

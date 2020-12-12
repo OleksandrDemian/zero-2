@@ -6,6 +6,7 @@
 	import Separator from "../components/ui/Separator.svelte";
 	import Button from "../components/ui/Button.svelte";
 	import ViewContainer from "../components/containers/ViewContainer.svelte";
+	import Column from "../components/containers/Column.svelte";
 
 	const onLevel = ({detail}) => {
 		router.navigate("level", {
@@ -17,7 +18,9 @@
 </script>
 
 <ViewContainer>
-	<LevelsList on:click={onLevel} />
+	<Column>
+		<LevelsList on:click={onLevel} />
+	</Column>
 	<Separator />
 	<Button size="medium" colorScheme="red" outline on:click={() => router.back()}>Back</Button>
 </ViewContainer>
