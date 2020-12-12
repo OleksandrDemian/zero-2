@@ -18,7 +18,7 @@
 <ViewContainer>
 	<Column>
 		<h3 class="center on-background-text">Time attack</h3>
-		<p class="center">Beat set of levels while time is running up. After each stage you will get time bonus.</p>
+		<p class="center">Solve puzzles while time is running up. Each passed level will give you +2 seconds.</p>
 
 		<Separator />
 		<Button size="medium" colorScheme="green" on:click={enter}>Let's go</Button>

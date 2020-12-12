@@ -24,25 +24,41 @@
 			difficulty: DIFFICULTIES.TUTORIAL,
 			name: "Cave",
 			levels: 4,
-			bonus: 4
+			bonus: 4,
+			messages: {
+				success: "Good",
+				fail: "No comments"
+			}
 		},
 		{
 			difficulty: DIFFICULTIES.EASY,
 			name: "Void",
 			levels: 4,
-			bonus: 5
+			bonus: 5,
+			messages: {
+				success: "Now we start talking",
+				fail: "Maybe a bit of exercise?"
+			}
 		},
 		{
 			difficulty: DIFFICULTIES.MEDIUM,
 			name: "Platform",
-			levels: 2,
-			bonus: 6
+			levels: 6,
+			bonus: 6,
+			messages: {
+				success: "Bravo, you got some skills",
+				fail: "Close enough"
+			}
 		},
 		{
 			difficulty: DIFFICULTIES.HARD,
 			name: "Hall",
-			levels: 1,
-			bonus: 1
+			levels: 2,
+			bonus: 1,
+			messages: {
+				success: "We got champion here!",
+				fail: "Well, at least you beat medium difficulty"
+			}
 		},
 	];
 
@@ -72,7 +88,7 @@
 		const stageSetting = STAGES[stage];
 
 		level++;
-		seconds ++;
+		seconds += 2;
 
 		GameStore.createRandomLevel(stageSetting.name + " " + level, stageSetting.difficulty);
 
@@ -89,9 +105,9 @@
 
 	const nextStage = () => {
 		//this is called also at the beginning. Do not add bonus
-		if(stage > -1){
-			seconds += STAGES[stage].bonus;
-		}
+		// if(stage > -1){
+		// 	seconds += STAGES[stage].bonus;
+		// }
 
 		stage ++;
 		state = STATE.IN_PROGRESS;
@@ -143,16 +159,16 @@
 {:else if state === STATE.IN_PROGRESS}
 	<!--IN PROGRESS-->
 
-	<SimpleGame on:restart={onRestart} />
+	<SimpleGame on:restart={onRestart} title={$GameStore.title} />
 {:else if state === STATE.STAGE_CLEAR}
 	<!--STAGE CLEAR-->
 
 	<h1 class="center green on-background-text">Stage clear</h1>
 
 	<Column>
-		<ProgressBar fill={stage+1} max={STAGES.length} />
+		<h3 class="center">{STAGES[stage].messages.success}</h3>
 		<Separator />
-		<p class="center">Bonus +{STAGES[stage].bonus} seconds</p>
+		<ProgressBar fill={stage+1} max={STAGES.length} />
 		<Separator />
 	</Column>
 
@@ -163,13 +179,14 @@
 	<h1 class="center red on-background-text">Game over</h1>
 
 	<Column>
-		<ProgressBar fill={stage} max={STAGES.length} />
-		<h3 class="center on-background-text">You didn't manage to become the time king. Maybe the next time.</h3>
+		<h3 class="center">{STAGES[stage].messages.fail}</h3>
 		<Separator />
-		<p class="center">Try to exercise yourself in campaign or random play</p>
+		<ProgressBar fill={stage} max={STAGES.length} />
 		<Separator />
 	</Column>
 
+	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("time-intro")}>Retry</Button>
+	<Separator />
 	<Button colorScheme="red" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {/if}
 

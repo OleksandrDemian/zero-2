@@ -8,7 +8,7 @@
 
 	const onNext = () => {
 		index++;
-		GameStore.createRandomLevel(`${difficulty.name} [${index}]`, difficulty);
+		GameStore.createRandomLevel(`${difficulty.name} ${index}`, difficulty);
 	};
 
 	const onRestart = () => {
@@ -19,5 +19,5 @@
 </script>
 
 <ViewContainer>
-	<SimpleGame on:next={onNext} on:restart={onRestart} />
+	<SimpleGame on:next={onNext} on:restart={onRestart} title={$GameStore.title} />
 </ViewContainer>

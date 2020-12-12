@@ -11,10 +11,11 @@
 	const dispatch = createEventDispatcher();
 	const onNext = () => dispatch("next");
 	const onRestart = () => dispatch("restart");
+	export let title;
 </script>
 
 <Column>
-	<NumbersBoard title={$GameStore.title} />
+	<NumbersBoard title={title} />
 	<ActionsBoard />
 </Column>
 <Separator />
