@@ -23,7 +23,7 @@
 		}
 	};
 
-	const GROUPS = ["tutorial", "easy", "medium", "hard"];
+	const GROUPS = ["tutorial", "easy", "medium", "hard", "super_hard", "extreme"];
 	const levels = groupLevels(LEVELS);
 
 </script>

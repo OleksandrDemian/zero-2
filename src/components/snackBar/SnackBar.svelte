@@ -25,7 +25,7 @@
 		<div class="snack-bar">
 			<div class="head">
 				<span class="title">{snack.title}</span>
-				<img class="close" src="/icons/close.svg" on:click={onClose} width="24" height="24" />
+				<img class="close" src="/icons/close.svg" on:click={onClose} width="24" height="24" alt="Zero.2 close" />
 			</div>
 
 			{#if snack.child}

@@ -23,17 +23,4 @@
 		align-items: center;
 		justify-content: center;
 	}
-
-    img {
-        cursor: pointer;
-        width: 0;
-		margin-right: 0;
-
-		transition: all var(--animation-speed) ease-in-out;
-    }
-
-	img.active {
-		width: 32px;
-		margin-right: 15px;
-    }
 </style>
