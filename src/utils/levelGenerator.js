@@ -1,5 +1,6 @@
 import {actionToLabel, DIV, MULT, SUB, SUM} from "../game/action";
 import {mustDo, random, shuffleArray} from "./random";
+import DIFFICULTIES from "../data/difficultySettings";
 
 const getRandomAction = ({ numbers, settings }) => {
 	const allowedActions = [SUM, SUB];
@@ -134,17 +135,23 @@ export const createLevel = (settings, controlValue = 0) => {
 	
 	return {
 		name,
+		solution,
 		numbers: polishedArray,
 		actions: shuffleArray(actions)
 	}
 };
 
-// document.createLevels = (qty, settings) => {
-// 	const levels = [];
-//
-// 	for(let i = 0; i < qty; i++){
-// 		levels.push(createLevel(i, settings));
-// 	}
-//
-// 	return JSON.stringify(levels);
-// };
+
+document.difficulties = DIFFICULTIES;
+document.createLevels = (qty, prefix, settings) => {
+	const levels = [];
+
+	for(let i = 0; i < qty; i++){
+		const level = createLevel(settings);
+		level.name = prefix + " " + (i+1);
+		level.difficulty = prefix.toLowerCase();
+		levels.push(level);
+	}
+
+	return JSON.stringify(levels);
+};

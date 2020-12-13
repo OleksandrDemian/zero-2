@@ -15,6 +15,14 @@ export const groupLevels = (levels) => {
 		hard: {
 			title: "Hard",
 			levels: []
+		},
+		super_hard: {
+			title: "Super hard",
+			levels: []
+		},
+		extreme: {
+			title: "Extreme",
+			levels: []
 		}
 	};
 	

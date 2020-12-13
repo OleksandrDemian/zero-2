@@ -48,5 +48,6 @@
 	span.name {
 		color: var(--number-text-color);
 		font-size: var(--small-font-size);
+		text-align: center;
 	}
 </style>
