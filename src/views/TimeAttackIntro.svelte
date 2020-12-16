@@ -17,7 +17,6 @@
 
 <ViewContainer>
 	<Column>
-		<h3 class="center on-background-text">Time attack</h3>
 		<p class="center">Solve puzzles while time is running up. Each passed level will give you +2 seconds.</p>
 
 		<Separator />

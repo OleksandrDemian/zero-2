@@ -1,20 +1,16 @@
 <script>
 	import router from "../../store/runtime/router";
 
-	const goBack = () => active && router.back();
-	let active = false;
+	const goBack = () => router.back();
+	let title = "--";
 
 	$: {
-		active = router.getRoute($router.current.to).settings.showBack === true;
+		title = router.getRoute($router.current.to).settings.header;
     }
 </script>
 
-<header class:active={active}>
-<!--	<img class:active={active} width="32" height="32" src="./icons/back.svg" alt="close" on:click={goBack} />-->
-
-	<h1 class="on-background-text">Zero.2</h1>
-
-<!--	<img width="32" height="32" src="./icons/back.svg" alt="close" />-->
+<header>
+	<h1 class="on-background-text">{title}</h1>
 </header>
 
 <style>

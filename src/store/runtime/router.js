@@ -1,7 +1,10 @@
 import store from "./store";
 
+const DEFAULT_HEADING = "Zero.2";
+
 const DEFAULT_ROUTE_SETTINGS = {
-	showBack: false
+	showBack: false,
+	header: DEFAULT_HEADING
 };
 
 const DEFAULT_ROUTE = {
@@ -44,7 +47,6 @@ const back = () => {
 };
 
 const onPopState = () => {
-	console.log("Back");
 	update(state => {
 		let route = state.history.pop();
 		

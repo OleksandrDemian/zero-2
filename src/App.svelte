@@ -14,17 +14,21 @@
 	import RandomLevelChooser from "./views/RandomLevelChooser.svelte";
 	import Play from "./views/Play.svelte";
 	import Objectives from "./views/Objectives.svelte";
+	import ArcadeIntro from "./views/ArcadeIntro.svelte";
+	import Arcade from "./views/Arcade.svelte";
 
 	router.addRoute("", Home);
-	router.addRoute("play", Play, {showBack: true});
-	router.addRoute("random-level-chooser", RandomLevelChooser, {showBack: true});
-	router.addRoute("random", Random, {showBack: true});
-	router.addRoute("campaign", Campaign, {showBack: true});
-	router.addRoute("level", Game, {showBack: true});
-	router.addRoute("time-intro", TimeAttackIntro, {showBack: true});
-	router.addRoute("time-game", TimeAttack, {showBack: true});
-	router.addRoute("how-it-works", HowToPlay, {showBack: true});
-	router.addRoute("objectives", Objectives, {showBack: true});
+	router.addRoute("play", Play);
+	router.addRoute("random-level-chooser", RandomLevelChooser, { header: "Random" });
+	router.addRoute("random", Random);
+	router.addRoute("campaign", Campaign, { header: "Campaign" });
+	router.addRoute("level", Game);
+	router.addRoute("time-intro", TimeAttackIntro, { header: "Time attack" });
+	router.addRoute("time-game", TimeAttack);
+	router.addRoute("how-it-works", HowToPlay, { header: "How to play" });
+	router.addRoute("objectives", Objectives, { header: "Objectives" });
+	router.addRoute("arcade-intro", ArcadeIntro, { header: "Arcade" });
+	router.addRoute("arcade", Arcade);
 </script>
 
 <SnackBar />
