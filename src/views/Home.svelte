@@ -18,7 +18,7 @@
 
 	if (PersistentStore.get(FIRST_TIME) !== false) {
 		setTimeout(() => {
-			SnackBarStore.showSnack({
+			SnackBarStore.pushSnack({
 				title: "Welcome!",
 				child: FirstTimeMessage,
 				onClose: () => {

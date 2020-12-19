@@ -1,6 +1,6 @@
 <script>
-	export let fill;
-	export let max;
+	export let fill = 0;
+	export let max = 0;
 
 	const fillPerc = (fill / max) * 100;
 </script>

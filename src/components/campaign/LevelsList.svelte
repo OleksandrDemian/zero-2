@@ -16,7 +16,7 @@
 			if(reachedLevel >= level) {
 				dispatch("click", level);
 			} else {
-				SnackBarStore.showSnack({
+				SnackBarStore.pushSnack({
 					title: "Level blocked"
 				});
 			}

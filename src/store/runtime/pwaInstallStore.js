@@ -18,7 +18,7 @@ const setInstallable = (installPrompt) => {
 	}));
 	
 	if(PersistentStore.get(PWA_INSTALL_SHOWN) !== true){
-		SnackBarStore.showSnack({
+		SnackBarStore.pushSnack({
 			title: "Install PWA",
 			child: PwaInstallMessage,
 			onClose: () => {

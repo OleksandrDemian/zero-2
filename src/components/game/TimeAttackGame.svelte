@@ -148,7 +148,7 @@
 	nextStage();
 </script>
 
-<h3 class="center on-background-text" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
+<!--<h3 class="center on-background-text" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>-->
 
 {#if state === STATE.ATTACK_COMPLETE}
 	<!--VICTORY-->
@@ -159,7 +159,7 @@
 {:else if state === STATE.IN_PROGRESS}
 	<!--IN PROGRESS-->
 
-	<SimpleGame on:restart={onRestart} title={$GameStore.title} />
+	<SimpleGame on:restart={onRestart} title={`Time: ${seconds}s`} />
 {:else if state === STATE.STAGE_CLEAR}
 	<!--STAGE CLEAR-->
 
