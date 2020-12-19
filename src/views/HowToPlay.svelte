@@ -12,7 +12,7 @@
 		<p>The objective is <b>to make all the numbers be equal to 0</b> before you end all the <b>actions</b>.</p>
 		<p>In order to apply <b>action</b>, select (click) the <b>number</b> you want (<b>one or more</b>) and then click on the <b>action</b> you want to apply.</p>
 		<p>!You can unselect numbers</p>
-		<p>Good starting point is <b>Tutorial</b> section of the <b>campaign</b> or easy level of <b>Random</b> mode. Once you feel unbeatable, try <b>Time Attack</b>.</p>
+		<p>Good starting point is <b>Easy</b> difficulty of the <b>Random</b> mode. Once you feel unbeatable, try to complete <b>Time Attack</b> or get the highest score in <b>Arcade</b> mode.</p>
 	</Column>
 
 	<Separator />

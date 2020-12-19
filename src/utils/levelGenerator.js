@@ -59,7 +59,7 @@ const DEFAULT_GENERATION_SETTINGS = () => ({
 	maxActionValue: 10,
 	allowMultiplication: false,
 	allowDivision: true,
-	minNumbers: 1,
+	minNumbers: 2,
 	maxNumbers: 4,
 	
 	name: "Generated",
@@ -140,18 +140,18 @@ export const createLevel = (settings, controlValue = 0) => {
 		actions: shuffleArray(actions)
 	}
 };
-
-
-document.difficulties = DIFFICULTIES;
-document.createLevels = (qty, prefix, settings) => {
-	const levels = [];
-
-	for(let i = 0; i < qty; i++){
-		const level = createLevel(settings);
-		level.name = prefix + " " + (i+1);
-		level.difficulty = prefix.toLowerCase();
-		levels.push(level);
-	}
-
-	return JSON.stringify(levels);
-};
+//
+//
+// document.difficulties = DIFFICULTIES;
+// document.createLevels = (qty, prefix, settings) => {
+// 	const levels = [];
+//
+// 	for(let i = 0; i < qty; i++){
+// 		const level = createLevel(settings);
+// 		level.name = prefix + " " + (i+1);
+// 		level.difficulty = prefix.toLowerCase();
+// 		levels.push(level);
+// 	}
+//
+// 	return JSON.stringify(levels);
+// };

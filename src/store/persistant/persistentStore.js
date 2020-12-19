@@ -4,10 +4,14 @@ export const FIRST_TIME = "firstTime";
 export const OBJECTIVES_STORED_ID = "objectives";
 export const PLAYER_ID = "playerId";
 export const BEST_ARCADE_SCORE = "bestArcadeScore";
+export const SUCCESSFUL_TIME_ATTACKS = "successfulTimeAttacks";
+export const SUCCESSFUL_LOOPS = "successfulLoops";
 
 const DEFAULT_DATA = {
 	reachedLevel: 0,
-	bestArcadeScore: 0
+	bestArcadeScore: 0,
+	successfulTimeAttacks: 0,
+	successfulLoops: 0
 };
 
 const store = {

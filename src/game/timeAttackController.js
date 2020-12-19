@@ -22,7 +22,7 @@ const STAGES = [
 	{
 		difficulty: DIFFICULTIES.EASY,
 		name: "Easy",
-		levels: 6,
+		levels: 2,
 		timeBonus: 2,
 		messages: {
 			fail: [
@@ -34,8 +34,8 @@ const STAGES = [
 	{
 		difficulty: DIFFICULTIES.MEDIUM,
 		name: "Medium",
-		levels: 4,
-		timeBonus: 2,
+		levels: 6,
+		timeBonus: 3,
 		messages: {
 			fail: [
 				"Close enough",
@@ -48,7 +48,7 @@ const STAGES = [
 		difficulty: DIFFICULTIES.HARD,
 		name: "Hard",
 		levels: 2,
-		timeBonus: 2,
+		timeBonus: 4,
 		messages: {
 			fail: [
 				"Well, at least you beat medium difficulty",
@@ -57,23 +57,66 @@ const STAGES = [
 				"YOU CAN HANDLE IT"
 			]
 		}
-	},
+	}
 ];
 
-export const MAX_LEVELS = () => {
-	return STAGES.reduce((prev, cur) => prev + cur.levels, 0)
+const LOOP_STAGES = [
+	{
+		difficulty: DIFFICULTIES.HARD,
+		name: "Hard",
+		levels: 4,
+		timeBonus: 4,
+		messages: {
+			fail: [
+				"Wasn't ready for loop?"
+			]
+		}
+	},
+	{
+		difficulty: DIFFICULTIES.SUPER_HARD,
+		name: "Super hard",
+		levels: 4,
+		timeBonus: 5,
+		messages: {
+			fail: [
+				"You got super far",
+				"You're better then Clark"
+			]
+		}
+	},
+	{
+		difficulty: DIFFICULTIES.EXTREME,
+		name: "Extreme",
+		levels: 4,
+		timeBonus: 6,
+		messages: {
+			fail: [
+				"Dude, you rock",
+				"You almost did it"
+			]
+		}
+	}
+];
+
+export const MAX_LEVELS = (isLoop = false) => {
+	if(isLoop){
+		return LOOP_STAGES.reduce((prev, cur) => prev + cur.levels, 0)
+	} else {
+		return STAGES.reduce((prev, cur) => prev + cur.levels, 0)
+	}
 };
 
-export const getStage = (level) => {
+export const getStage = (level, isLoop = false) => {
 	let temp = 0;
-	return STAGES.find((stage) => {
+	const stages = isLoop ? LOOP_STAGES : STAGES;
+	return stages.find((stage) => {
 		temp += stage.levels;
 		return level < temp;
 	});
 };
 
-export const getRandomFailMessage = (level) => {
-	const stage = getStage(level);
+export const getRandomFailMessage = (level, isLoop = false) => {
+	const stage = getStage(level, isLoop);
 	const msg = stage.messages.fail;
 	return msg[random(0, msg.length)];
 };

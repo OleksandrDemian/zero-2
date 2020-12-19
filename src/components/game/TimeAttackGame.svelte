@@ -9,10 +9,13 @@
 	import Column from "../containers/Column.svelte";
 	import {getStage, getRandomFailMessage, START_TIME_LIMIT} from "../../game/timeAttackController";
 	import {MAX_LEVELS} from "../../game/timeAttackController";
+	import PersistentStore, {SUCCESSFUL_LOOPS, SUCCESSFUL_TIME_ATTACKS} from "../../store/persistant/persistentStore";
 
 	let state = GAME_STATE.NONE;
 
 	let level = 0;
+	let isLoop = false;
+	let maxLevels = 0;
 
 	let seconds = START_TIME_LIMIT;
 	let intervalId = null;
@@ -21,7 +24,17 @@
 		if(state === GAME_STATE.IN_PROGRESS){
 			if (value.gameState === GAME_STATE.WIN) {
 				level ++;
-				startLevel();
+				if(level >= maxLevels) {
+					stop();
+					state = GAME_STATE.WIN;
+
+					const prop = isLoop ? SUCCESSFUL_LOOPS : SUCCESSFUL_TIME_ATTACKS;
+					const successfulRuns = PersistentStore.get(prop);
+					PersistentStore.set(prop, successfulRuns+1);
+					PersistentStore.save();
+				} else {
+					startLevel();
+				}
 			} else if (value.gameState === GAME_STATE.LOSE) {
 				GameStore.restoreLevel();
 			}
@@ -29,6 +42,7 @@
 	});
 
 	const startGame = () => {
+		maxLevels = MAX_LEVELS(isLoop);
 		state = GAME_STATE.IN_PROGRESS;
 		intervalId = setInterval(() => {
 			seconds--;
@@ -70,6 +84,12 @@
 		GameStore.restoreLevel();
 	};
 
+	const startLoop = () => {
+		isLoop = true;
+		level = 0;
+		startGame();
+	};
+
 	startGame();
 </script>
 
@@ -77,13 +97,24 @@
 
 {#if state === GAME_STATE.WIN}
 	<!--VICTORY-->
+	<Column>
+		<h1 class="center green on-background-text">Congrats</h1>
+		{#if isLoop}
+			<h3 class="center on-background-text">You can be proud of yourself</h3>
+		{:else}
+			<h3 class="center on-background-text">Wow man, good loop.</h3>
+		{/if}
+	</Column>
 
-	<h1 class="center green on-background-text">Congrats</h1>
-	<h3 class="center on-background-text">You can be proud of yourself</h3>
-	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
+	{#if !isLoop && seconds > 5}
+		<Button colorScheme="green" size="medium" on:click={startLoop}>Enter the loop</Button>
+		<Separator />
+	{/if}
+
+	<Button colorScheme="red" size="medium" on:click={() => router.navigate("")}>Go home</Button>
 {:else if state === GAME_STATE.IN_PROGRESS}
 	<!--IN PROGRESS-->
-	<ProgressBar fill={level} max={MAX_LEVELS()} />
+	<ProgressBar fill={level} max={maxLevels} />
 
 	<SimpleGame on:restart={onRestart} title={`Stage ${level+1}: ${seconds}s`} />
 {:else if state === GAME_STATE.LOSE}
@@ -94,7 +125,7 @@
 	<Column>
 		<h3 class="center">{getRandomFailMessage(level)}</h3>
 		<Separator />
-		<ProgressBar fill={level} max={MAX_LEVELS()} />
+		<ProgressBar fill={level} max={maxLevels} />
 		<Separator />
 	</Column>
 

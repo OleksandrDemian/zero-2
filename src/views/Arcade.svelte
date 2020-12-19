@@ -60,6 +60,7 @@
 
 <ViewContainer>
 	{#if state === GAME_STATE.WIN}
+		<!--WIN-->
 		<Column>
 			<h1 class="center on-background-text">Score: {calculateScore()}</h1>
 		</Column>
@@ -69,7 +70,8 @@
 		<Button colorScheme="blue">Share</Button>
 		<Separator />
 		<Button colorScheme="red" on:click={() => router.navigate("")}>Go home</Button>
-	{:else}
+	{:else if state === GAME_STATE.IN_PROGRESS}
+		<!--IN_PROGRESS-->
 		<SimpleGame on:restart={onRestart} title={$GameStore.title} />
 	{/if}
 </ViewContainer>

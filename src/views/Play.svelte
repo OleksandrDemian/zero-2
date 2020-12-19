@@ -13,8 +13,8 @@
 
 <ViewContainer>
 	<Column>
-		<Button on:click={startCampaign} colorScheme="orange" size="medium">Campaign</Button>
-		<Separator />
+<!--		<Button on:click={startCampaign} colorScheme="orange" size="medium">Campaign</Button>-->
+<!--		<Separator />-->
 		<Button on:click={startRandom} colorScheme="green" size="medium">Random</Button>
 		<Separator />
 		<Button on:click={startArcade} colorScheme="blue" size="medium">Arcade</Button>
