@@ -17,7 +17,7 @@
 
 <ViewContainer>
 	<Column>
-		<p class="center">Solve puzzles while time is running up. Each passed level will give you +2 seconds.</p>
+		<p class="center">Solve puzzles while time is running out. Each passed level will give you a couple of bonus seconds.</p>
 
 		<Separator />
 		<Button size="medium" colorScheme="green" on:click={enter}>Let's go</Button>

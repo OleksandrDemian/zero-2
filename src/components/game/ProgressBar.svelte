@@ -2,15 +2,15 @@
 	export let fill = 0;
 	export let max = 0;
 
-	const fillPerc = (fill / max) * 100;
+	let fillPerc;
+
+	$: fillPerc = fill > 0 ? (fill / max) * 100 : 0;
 </script>
 
-<span class="progress-label">Progress</span>
+<span class="progress-label">Progress: {Math.round(fillPerc)}%</span>
 <div class="line">
 	<div class="meter" style={`width: ${fillPerc}%;`}>
-		{ #if fillPerc > 0 }
-			<span class="progress">{Math.round(fillPerc)}%</span>
-		{/if}
+		<span class="progress"></span>
 	</div>
 </div>
 

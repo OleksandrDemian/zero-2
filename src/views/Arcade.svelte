@@ -8,15 +8,16 @@
 	import Separator from "../components/ui/Separator.svelte";
 	import Button from "../components/ui/Button.svelte";
 	import router from "../store/runtime/router";
+	import PersistentStore, {BEST_ARCADE_SCORE} from "../store/persistant/persistentStore";
 
 	let level = 0;
 	let state = GAME_STATE.NONE;
 	let startTime = Date.now();
 	let deltaTime = null;
-	const LEVELS = 10;
+	const LEVELS = 15;
 
 	const startLevel = () => {
-		GameStore.createRandomLevel("Arcade " + (level+1), DIFFICULTIES.EASY);
+		GameStore.createRandomLevel("Arcade " + (level+1), level < 10 ? DIFFICULTIES.EASY : DIFFICULTIES.MEDIUM);
 		state = GAME_STATE.IN_PROGRESS;
 	};
 
@@ -30,6 +31,13 @@
 				} else {
 					deltaTime = Date.now() - startTime;
 					state = GAME_STATE.WIN;
+
+					const score = calculateScore();
+					const currentBest = PersistentStore.get(BEST_ARCADE_SCORE);
+					if(score > currentBest){
+						PersistentStore.set(BEST_ARCADE_SCORE, score);
+						PersistentStore.save();
+					}
 				}
 			} else if (value.gameState === GAME_STATE.LOSE) {
 				GameStore.restoreLevel();
@@ -44,7 +52,7 @@
 	};
 
 	const calculateScore = () => {
-		return parseInt((1000000 / deltaTime));
+		return parseInt((100000000 / deltaTime));
 	};
 
 	startLevel();

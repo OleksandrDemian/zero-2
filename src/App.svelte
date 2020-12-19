@@ -15,9 +15,10 @@
 	main {
 		width: 100%;
 		max-width: 500px;
-		padding: 45px 0;
 		display: flex;
 		flex-direction: column;
+
+		padding-bottom: 45px;
 
 		margin-left: auto;
 		margin-right: auto;
@@ -26,7 +27,7 @@
 
 	@media screen and (max-width: 500px) {
 		main {
-			padding: 45px;
+			padding: 0 45px 45px 45px;
 		}
 	}
 </style>
