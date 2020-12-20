@@ -9,6 +9,8 @@
 	import Column from "../containers/Column.svelte";
 	import {getStage, getRandomFailMessage, MAX_LEVELS, START_TIME_LIMIT} from "../../game/timeAttackController";
 	import PersistentStore, {SUCCESSFUL_OVERDRIVES, SUCCESSFUL_TIME_ATTACKS} from "../../store/persistant/persistentStore";
+	import Objectives, {OBJECTIVES_ID} from "../../data/objectives";
+	import SnackBarStore from "../../store/runtime/snackBarStore";
 
 	let state = GAME_STATE.NONE;
 
@@ -24,13 +26,7 @@
 			if (value.gameState === GAME_STATE.WIN) {
 				level ++;
 				if(level >= maxLevels) {
-					stop();
-					state = GAME_STATE.WIN;
-
-					const prop = isOverdrive ? SUCCESSFUL_OVERDRIVES : SUCCESSFUL_TIME_ATTACKS;
-					const successfulRuns = PersistentStore.get(prop);
-					PersistentStore.set(prop, successfulRuns+1);
-					PersistentStore.save();
+					completeRun();
 				} else {
 					startLevel();
 				}
@@ -39,6 +35,25 @@
 			}
 		}
 	});
+
+	const completeRun = () => {
+		stop();
+		state = GAME_STATE.WIN;
+
+		const prop = isOverdrive ? SUCCESSFUL_OVERDRIVES : SUCCESSFUL_TIME_ATTACKS;
+		const successfulRuns = PersistentStore.get(prop);
+		PersistentStore.set(prop, successfulRuns+1);
+		PersistentStore.save();
+
+		const objective = isOverdrive ? OBJECTIVES_ID.OVERDRIVE : OBJECTIVES_ID.TIME_RUNNER;
+
+		if(Objectives.complete(objective)) {
+			SnackBarStore.pushSnack({
+				title: "Objective complete",
+				message: `Unlocked ${isOverdrive ? "Overdrive" : "Runner"} objective`
+			});
+		}
+	};
 
 	const startGame = () => {
 		maxLevels = MAX_LEVELS(isOverdrive);
@@ -99,9 +114,9 @@
 	<Column>
 		<h1 class="center green on-background-text">Congrats</h1>
 		{#if isOverdrive}
-			<h3 class="center on-background-text">You can be proud of yourself</h3>
-		{:else}
 			<h3 class="center on-background-text">Wow man, good overdrive.</h3>
+		{:else}
+			<h3 class="center on-background-text">You can be proud of yourself</h3>
 		{/if}
 	</Column>
 

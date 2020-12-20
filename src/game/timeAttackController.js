@@ -19,45 +19,45 @@ const STAGES = [
 			]
 		}
 	},
-	// {
-	// 	difficulty: DIFFICULTIES.EASY,
-	// 	name: "Easy",
-	// 	levels: 2,
-	// 	timeBonus: 2,
-	// 	messages: {
-	// 		fail: [
-	// 			"Maybe a bit of exercise?",
-	// 			"At least, it's not the easiest difficulty"
-	// 		]
-	// 	}
-	// },
-	// {
-	// 	difficulty: DIFFICULTIES.MEDIUM,
-	// 	name: "Medium",
-	// 	levels: 6,
-	// 	timeBonus: 3,
-	// 	messages: {
-	// 		fail: [
-	// 			"Close enough",
-	// 			"You were going pretty well",
-	// 			"You almost did it (to the last stage)"
-	// 		]
-	// 	}
-	// },
-	// {
-	// 	difficulty: DIFFICULTIES.HARD,
-	// 	name: "Hard",
-	// 	levels: 2,
-	// 	timeBonus: 4,
-	// 	messages: {
-	// 		fail: [
-	// 			"Well, at least you beat medium difficulty",
-	// 			"So close",
-	// 			"You can do it",
-	// 			"YOU CAN HANDLE IT"
-	// 		]
-	// 	}
-	// }
+	{
+		difficulty: DIFFICULTIES.EASY,
+		name: "Easy",
+		levels: 2,
+		timeBonus: 2,
+		messages: {
+			fail: [
+				"Maybe a bit of exercise?",
+				"At least, it's not the easiest difficulty"
+			]
+		}
+	},
+	{
+		difficulty: DIFFICULTIES.MEDIUM,
+		name: "Medium",
+		levels: 6,
+		timeBonus: 3,
+		messages: {
+			fail: [
+				"Close enough",
+				"You were going pretty well",
+				"You almost did it (to the last stage)"
+			]
+		}
+	},
+	{
+		difficulty: DIFFICULTIES.HARD,
+		name: "Hard",
+		levels: 2,
+		timeBonus: 4,
+		messages: {
+			fail: [
+				"Well, at least you beat medium difficulty",
+				"So close",
+				"You can do it",
+				"YOU CAN HANDLE IT"
+			]
+		}
+	}
 ];
 
 const OVERDRIVE_STAGES = [
@@ -72,30 +72,30 @@ const OVERDRIVE_STAGES = [
 			]
 		}
 	},
-	// {
-	// 	difficulty: DIFFICULTIES.SUPER_HARD,
-	// 	name: "Super hard",
-	// 	levels: 4,
-	// 	timeBonus: 5,
-	// 	messages: {
-	// 		fail: [
-	// 			"You got super far",
-	// 			"You're better then Clark"
-	// 		]
-	// 	}
-	// },
-	// {
-	// 	difficulty: DIFFICULTIES.EXTREME,
-	// 	name: "Extreme",
-	// 	levels: 4,
-	// 	timeBonus: 6,
-	// 	messages: {
-	// 		fail: [
-	// 			"Dude, you rock",
-	// 			"You almost did it"
-	// 		]
-	// 	}
-	// }
+	{
+		difficulty: DIFFICULTIES.SUPER_HARD,
+		name: "Super hard",
+		levels: 4,
+		timeBonus: 5,
+		messages: {
+			fail: [
+				"You got super far",
+				"You're better then Clark"
+			]
+		}
+	},
+	{
+		difficulty: DIFFICULTIES.EXTREME,
+		name: "Extreme",
+		levels: 4,
+		timeBonus: 6,
+		messages: {
+			fail: [
+				"Dude, you rock",
+				"You almost did it"
+			]
+		}
+	}
 ];
 
 export const MAX_LEVELS = (isOverdrive = false) => {

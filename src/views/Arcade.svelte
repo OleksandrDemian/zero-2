@@ -9,6 +9,8 @@
 	import Button from "../components/ui/Button.svelte";
 	import router from "../store/runtime/router";
 	import PersistentStore, {BEST_ARCADE_SCORE} from "../store/persistant/persistentStore";
+	import Objectives, {OBJECTIVES_ID} from "../data/objectives";
+	import SnackBarStore from "../store/runtime/snackBarStore";
 
 	let level = 0;
 	let state = GAME_STATE.NONE;
@@ -25,6 +27,23 @@
 		startTime = Date.now();
 	};
 
+	const completeArcade = () => {
+		state = GAME_STATE.WIN;
+
+		const currentBest = PersistentStore.get(BEST_ARCADE_SCORE);
+		if(score > currentBest){
+			PersistentStore.set(BEST_ARCADE_SCORE, score);
+			PersistentStore.save();
+		}
+
+		if(Objectives.complete(OBJECTIVES_ID.ARCADE)) {
+			SnackBarStore.pushSnack({
+				title: "Objective complete",
+				message: `Unlocked Arcade objective`
+			})
+		}
+	};
+
 	const unsubscribe = GameStore.subscribe(value => {
 		if(state === GAME_STATE.IN_PROGRESS){
 			if (value.gameState === GAME_STATE.WIN) {
@@ -36,13 +55,7 @@
 					score += 10000 - deltaTime;
 					startLevel();
 				} else {
-					state = GAME_STATE.WIN;
-
-					const currentBest = PersistentStore.get(BEST_ARCADE_SCORE);
-					if(score > currentBest){
-						PersistentStore.set(BEST_ARCADE_SCORE, score);
-						PersistentStore.save();
-					}
+					completeArcade();
 				}
 			} else if (value.gameState === GAME_STATE.LOSE) {
 				GameStore.restoreLevel();
@@ -73,6 +86,6 @@
 		<Button colorScheme="red" on:click={() => router.navigate("")}>Go home</Button>
 	{:else if state === GAME_STATE.IN_PROGRESS}
 		<!--IN_PROGRESS-->
-		<SimpleGame on:restart={onRestart} title={$GameStore.title + "(" + score + ")"} />
+		<SimpleGame on:restart={onRestart} title={$GameStore.title} />
 	{/if}
 </ViewContainer>
