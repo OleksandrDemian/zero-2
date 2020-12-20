@@ -21,6 +21,13 @@ Play one of three modes:
 - Svelte
 
 ## :rocket: Releases
+#### 20/12/2020 - 0.4.4-alpha
+- Removed campaign
+- Refactor time attack
+- Add Arcade mode
+- Add Objectives
+
+## :rocket: Releases
 #### 08/12/2020 - 0.2.5-alpha
 - Setup [dev](https://zero-dev.oleksandrdemian.tech/) environment
 - Refactor game store

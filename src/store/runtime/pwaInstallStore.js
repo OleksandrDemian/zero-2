@@ -32,18 +32,7 @@ const setInstallable = (installPrompt) => {
 export const listen = () => {
 	if('serviceWorker' in navigator) {
 		const sw = navigator.serviceWorker;
-		sw.register('/serviceWorker.js').then(reg => {
-			reg.addEventListener('updatefound', () => {
-				reg.installing.addEventListener('statechange', () => {
-					if(reg.state === "installed"){
-						SnackBarStore.pushSnack({
-							title: "Update installed",
-							message: "Restart the app in order to activate new version"
-						})
-					}
-				});
-			});
-		});
+		sw.register('/serviceWorker.js');
 		
 		window.addEventListener('beforeinstallprompt', (e) => {
 			// Prevent the mini-infobar from appearing on mobile
