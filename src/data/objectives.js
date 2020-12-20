@@ -18,17 +18,17 @@ const OBJECTIVES = [
 	{
 		tag: OBJECTIVES_ID.ROCK,
 		title: "You rock!",
-		description: "Complete 8 hard random levels in a row"
+		description: "Complete 8 hard random levels in a row in under 5 minutes"
 	},
 	{
 		tag: OBJECTIVES_ID.MAD_SCIENTIST,
 		title: "Mad scientist",
-		description: "Complete 8 super-hard levels in a row"
+		description: "Complete 8 super-hard levels in a row in under 5 minutes"
 	},
 	{
 		tag: OBJECTIVES_ID.TRANSCENDENT_ENTITY,
 		title: "Transcendent entity",
-		description: "Complete 8 extreme levels in a row"
+		description: "Complete 8 extreme levels in a row in under 5 minutes"
 	},
 	{
 		tag: OBJECTIVES_ID.TIME_RUNNER,

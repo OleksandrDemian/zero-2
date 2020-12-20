@@ -8,6 +8,7 @@
 
 	export let difficulty = null;
 	let index = 0;
+	let startTime = Date.now();
 
 	const completeDifficulty = (dif) => {
 		if(dif === DIFFICULTIES.HARD){
@@ -19,18 +20,24 @@
 		}
 	};
 
-	const onNext = () => {
-		index++;
-
-		if(index > 8){
-			if(completeDifficulty(difficulty)) {
-				SnackBarStore.pushSnack({
-					title: "Objective complete",
-					message: `Unlocked new objective`
-				})
-			}
+	const checkObjective = () => {
+		if(index === 8){
+			const deltaTime = Date.now() - startTime;
+			return deltaTime < 5 * 60 * 1000;
 		}
 
+		return false;
+	};
+
+	const onNext = () => {
+		if(checkObjective() && completeDifficulty(difficulty)) {
+			SnackBarStore.pushSnack({
+				title: "Objective complete",
+				message: `Unlocked new objective`
+			})
+		}
+
+		index++;
 		GameStore.createRandomLevel(`${difficulty.name} ${index}`, difficulty);
 	};
 
