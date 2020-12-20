@@ -5,13 +5,13 @@ export const OBJECTIVES_STORED_ID = "objectives";
 export const PLAYER_ID = "playerId";
 export const BEST_ARCADE_SCORE = "bestArcadeScore";
 export const SUCCESSFUL_TIME_ATTACKS = "successfulTimeAttacks";
-export const SUCCESSFUL_LOOPS = "successfulLoops";
+export const SUCCESSFUL_OVERDRIVES = "successfulOverdrives";
 
 const DEFAULT_DATA = {
 	reachedLevel: 0,
 	bestArcadeScore: 0,
 	successfulTimeAttacks: 0,
-	successfulLoops: 0
+	successfulOverdrives: 0
 };
 
 const store = {

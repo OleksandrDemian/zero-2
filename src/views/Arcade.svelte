@@ -12,13 +12,17 @@
 
 	let level = 0;
 	let state = GAME_STATE.NONE;
-	let startTime = Date.now();
-	let deltaTime = null;
+	let score = 0;
+
+	let startTime = null;
+
 	const LEVELS = 15;
+	const LEVEL_DONE_POINTS = 20;
 
 	const startLevel = () => {
 		GameStore.createRandomLevel("Arcade " + (level+1), level < 10 ? DIFFICULTIES.EASY : DIFFICULTIES.MEDIUM);
 		state = GAME_STATE.IN_PROGRESS;
+		startTime = Date.now();
 	};
 
 	const unsubscribe = GameStore.subscribe(value => {
@@ -27,12 +31,13 @@
 				level++;
 
 				if (level < LEVELS) {
+					const deltaTime = Date.now() - startTime;
+					score += LEVEL_DONE_POINTS;
+					score += 10000 - deltaTime;
 					startLevel();
 				} else {
-					deltaTime = Date.now() - startTime;
 					state = GAME_STATE.WIN;
 
-					const score = calculateScore();
 					const currentBest = PersistentStore.get(BEST_ARCADE_SCORE);
 					if(score > currentBest){
 						PersistentStore.set(BEST_ARCADE_SCORE, score);
@@ -51,10 +56,6 @@
 		GameStore.restoreLevel();
 	};
 
-	const calculateScore = () => {
-		return parseInt((100000000 / deltaTime));
-	};
-
 	startLevel();
 </script>
 
@@ -62,16 +63,16 @@
 	{#if state === GAME_STATE.WIN}
 		<!--WIN-->
 		<Column>
-			<h1 class="center on-background-text">Score: {calculateScore()}</h1>
+			<h1 class="center on-background-text">Score: {score}</h1>
 		</Column>
 
 		<Button colorScheme="green" on:click={() => router.back()}>Restart</Button>
 		<Separator />
-		<Button colorScheme="blue">Share</Button>
-		<Separator />
+<!--		<Button colorScheme="blue">Share</Button>-->
+<!--		<Separator />-->
 		<Button colorScheme="red" on:click={() => router.navigate("")}>Go home</Button>
 	{:else if state === GAME_STATE.IN_PROGRESS}
 		<!--IN_PROGRESS-->
-		<SimpleGame on:restart={onRestart} title={$GameStore.title} />
+		<SimpleGame on:restart={onRestart} title={$GameStore.title + "(" + score + ")"} />
 	{/if}
 </ViewContainer>
