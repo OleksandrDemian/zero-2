@@ -22,5 +22,5 @@
 		<LevelsList on:click={onLevel} />
 	</Column>
 	<Separator />
-	<Button size="medium" colorScheme="red" outline on:click={() => router.back()}>Back</Button>
+	<Button size="medium" colorScheme="red" outline on:click={router.back}>Back</Button>
 </ViewContainer>

@@ -2,54 +2,61 @@
 	import Objectives from "../../data/objectives";
 
 	export let objective;
+	let done = Objectives.isDone(objective.tag);
 </script>
 
-<div class="container" class:done={Objectives.isDone(objective.tag)}>
-	<div class="image">
-
-	</div>
-	<div class="content">
-		<h3>{objective.title}</h3>
-		<p>{objective.description}</p>
-	</div>
+<div class="container" class:done={done}>
+	<p>
+		<span class="mark" class:done={done}></span>
+		<b>{objective.title}</b>
+	</p>
+	<p>{objective.description}</p>
 </div>
 
 <style>
 	div.container {
 		display: flex;
+		flex-direction: column;
 
 		border-radius: var(--border-radius);
 
 		margin: 10px 0;
 		padding: 10px 20px;
-		color: white;
+
+		background-color: white;
+		color: var(--text-color);
+
+		overflow: hidden;
 	}
 
 	div.container.done {
-		background-color: var(--green);
+		border: 2px solid var(--green);
 	}
 
 	div.container:not(.done) {
+		border: 2px solid var(--red);
+	}
+
+	span.mark {
+		margin-right: 10px;
+
+		display: inline-block;
+		width: 1rem;
+		height: 1rem;
+
+		border-radius: var(--border-radius);
+	}
+
+	span.mark.done {
+		background-color: var(--green);
+	}
+
+	span.mark:not(.done) {
 		background-color: var(--red);
 	}
 
-	div.image {
-		display: none;
-	}
-
-	div.content {
-		flex-grow: 1;
-	}
-
-	@media screen and (min-width: 500px) {
-		div.image {
-			display: block;
-
-			min-width: 128px;
-			min-height: 128px;
-
-			width: 128px;
-			height: 128px;
-		}
+	p {
+		display: flex;
+		align-items: center;
 	}
 </style>

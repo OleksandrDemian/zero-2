@@ -8,7 +8,6 @@
 </script>
 
 <ViewContainer>
-	<h2 class="center on-background-text">Objectives</h2>
 	{#each Objectives.list() as objective}
 		<Objective objective={objective} />
 	{/each}

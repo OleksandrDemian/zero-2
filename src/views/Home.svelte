@@ -18,7 +18,7 @@
 
 	if (PersistentStore.get(FIRST_TIME) !== false) {
 		setTimeout(() => {
-			SnackBarStore.showSnack({
+			SnackBarStore.pushSnack({
 				title: "Welcome!",
 				child: FirstTimeMessage,
 				onClose: () => {
@@ -36,8 +36,8 @@
 		<Separator />
 		<Button on:click={showHowToPlay} colorScheme="orange" size="medium">How to play</Button>
 		<Separator />
-<!--			<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>-->
-<!--			<Separator />-->
+		<Button on:click={showObjectives} colorScheme="red" size="medium">Objectives</Button>
+		<Separator />
 		<PwaInstallButton />
 	</Column>
 

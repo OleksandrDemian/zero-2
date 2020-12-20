@@ -27,7 +27,6 @@ export const DIFFICULTY_MEDIUM = Object.freeze({
 	allowMultiplication: false,
 	allowDivision: true,
 	
-	minNumbers: 2,
 	maxNumbers: 4,
 	
 	minActions: 2,
@@ -41,7 +40,6 @@ export const DIFFICULTY_HARD = Object.freeze({
 	allowMultiplication: true,
 	allowDivision: true,
 	
-	minNumbers: 2,
 	maxNumbers: 4,
 	
 	minActions: 3,

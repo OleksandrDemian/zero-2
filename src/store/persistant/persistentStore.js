@@ -3,9 +3,15 @@ export const PWA_INSTALL_SHOWN = "pwaInstallShown";
 export const FIRST_TIME = "firstTime";
 export const OBJECTIVES_STORED_ID = "objectives";
 export const PLAYER_ID = "playerId";
+export const BEST_ARCADE_SCORE = "bestArcadeScore";
+export const SUCCESSFUL_TIME_ATTACKS = "successfulTimeAttacks";
+export const SUCCESSFUL_OVERDRIVES = "successfulOverdrives";
 
 const DEFAULT_DATA = {
-	reachedLevel: 0
+	reachedLevel: 0,
+	bestArcadeScore: 0,
+	successfulTimeAttacks: 0,
+	successfulOverdrives: 0
 };
 
 const store = {

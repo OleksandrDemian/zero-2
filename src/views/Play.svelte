@@ -8,13 +8,16 @@
 	const startCampaign = () => router.navigate("campaign");
 	const startRandom = () => router.navigate("random-level-chooser");
 	const startTimeAttack = () => router.navigate("time-intro");
+	const startArcade = () => router.navigate("arcade-intro");
 </script>
 
 <ViewContainer>
 	<Column>
-		<Button on:click={startCampaign} colorScheme="green" size="medium">Campaign</Button>
+<!--		<Button on:click={startCampaign} colorScheme="orange" size="medium">Campaign</Button>-->
+<!--		<Separator />-->
+		<Button on:click={startRandom} colorScheme="green" size="medium">Random</Button>
 		<Separator />
-		<Button on:click={startRandom} colorScheme="orange" size="medium">Random</Button>
+		<Button on:click={startArcade} colorScheme="blue" size="medium">Arcade</Button>
 		<Separator />
 		<Button on:click={startTimeAttack} colorScheme="red" size="medium">Time Attack</Button>
 	</Column>

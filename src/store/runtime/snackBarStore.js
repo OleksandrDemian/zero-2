@@ -4,7 +4,7 @@ const { update, subscribe } = writable({
 	snacks: []
 });
 
-const showSnack = (snack) => {
+const pushSnack = (snack) => {
 	update(store => {
 		store.snacks.push(snack);
 		return { ...store }
@@ -31,7 +31,7 @@ const shift = () => {
 
 const SnackBarStore = {
 	subscribe,
-	showSnack,
+	pushSnack,
 	removeSnack,
 	shift
 };

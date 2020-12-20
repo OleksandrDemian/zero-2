@@ -2,81 +2,33 @@
 	import GameStore, {GAME_STATE} from "../../store/runtime/gameStore";
 	import Button from "../ui/Button.svelte";
 	import {onDestroy} from "svelte";
-	import DIFFICULTIES from "../../data/difficultySettings";
 	import ProgressBar from "./ProgressBar.svelte";
 	import Separator from "../ui/Separator.svelte";
 	import router from "../../store/runtime/router";
 	import SimpleGame from "./SimpleGame.svelte";
 	import Column from "../containers/Column.svelte";
+	import {getStage, getRandomFailMessage, MAX_LEVELS, START_TIME_LIMIT} from "../../game/timeAttackController";
+	import PersistentStore, {SUCCESSFUL_OVERDRIVES, SUCCESSFUL_TIME_ATTACKS} from "../../store/persistant/persistentStore";
+	import Objectives, {OBJECTIVES_ID} from "../../data/objectives";
+	import SnackBarStore from "../../store/runtime/snackBarStore";
 
-	const STATE = {
-		NONE: -1,
-		IN_PROGRESS: 0,
-		STAGE_CLEAR: 1,
-		ATTACK_COMPLETE: 2,
-		TIME_OUT: 3
-	};
-
-	const TIME_LIMIT = 15;
-
-	const STAGES = [
-		{
-			difficulty: DIFFICULTIES.TUTORIAL,
-			name: "Cave",
-			levels: 4,
-			bonus: 4,
-			messages: {
-				success: "Good",
-				fail: "No comments"
-			}
-		},
-		{
-			difficulty: DIFFICULTIES.EASY,
-			name: "Void",
-			levels: 4,
-			bonus: 5,
-			messages: {
-				success: "Now we start talking",
-				fail: "Maybe a bit of exercise?"
-			}
-		},
-		{
-			difficulty: DIFFICULTIES.MEDIUM,
-			name: "Platform",
-			levels: 6,
-			bonus: 6,
-			messages: {
-				success: "Bravo, you got some skills",
-				fail: "Close enough"
-			}
-		},
-		{
-			difficulty: DIFFICULTIES.HARD,
-			name: "Hall",
-			levels: 2,
-			bonus: 1,
-			messages: {
-				success: "We got champion here!",
-				fail: "Well, at least you beat medium difficulty"
-			}
-		},
-	];
-
-	let state = STATE.NONE;
+	let state = GAME_STATE.NONE;
 
 	let level = 0;
-	let stage = -1;
+	let isOverdrive = false;
+	let maxLevels = 0;
 
-	let seconds = TIME_LIMIT;
+	let seconds = START_TIME_LIMIT;
 	let intervalId = null;
 
 	const unsubscribe = GameStore.subscribe(value => {
-		if(state === STATE.IN_PROGRESS){
+		if(state === GAME_STATE.IN_PROGRESS){
 			if (value.gameState === GAME_STATE.WIN) {
-				if (level < STAGES[stage].levels) {
-					nextLevel();
+				level ++;
+				if(level >= maxLevels) {
+					completeRun();
 				} else {
-					stageClear();
+					startLevel();
 				}
 			} else if (value.gameState === GAME_STATE.LOSE) {
 				GameStore.restoreLevel();
@@ -84,15 +36,28 @@
 		}
 	});
 
-	const nextLevel = () => {
-		const stageSetting = STAGES[stage];
-
-		level++;
-		seconds += 2;
-
-		GameStore.createRandomLevel(stageSetting.name + " " + level, stageSetting.difficulty);
-
+	const completeRun = () => {
 		stop();
+		state = GAME_STATE.WIN;
+
+		const prop = isOverdrive ? SUCCESSFUL_OVERDRIVES : SUCCESSFUL_TIME_ATTACKS;
+		const successfulRuns = PersistentStore.get(prop);
+		PersistentStore.set(prop, successfulRuns+1);
+		PersistentStore.save();
+
+		const objective = isOverdrive ? OBJECTIVES_ID.OVERDRIVE : OBJECTIVES_ID.TIME_RUNNER;
+
+		if(Objectives.complete(objective)) {
+			SnackBarStore.pushSnack({
+				title: "Objective complete",
+				message: `Unlocked ${isOverdrive ? "Overdrive" : "Runner"} objective`
+			});
+		}
+	};
+
+	const startGame = () => {
+		maxLevels = MAX_LEVELS(isOverdrive);
+		state = GAME_STATE.IN_PROGRESS;
 		intervalId = setInterval(() => {
 			seconds--;
 
@@ -101,30 +66,18 @@
 				gameOver();
 			}
 		}, 1000);
+
+		startLevel();
 	};
 
-	const nextStage = () => {
-		//this is called also at the beginning. Do not add bonus
-		// if(stage > -1){
-		// 	seconds += STAGES[stage].bonus;
-		// }
+	const startLevel = () => {
+		const stageSetting = getStage(level, isOverdrive);
 
-		stage ++;
-		state = STATE.IN_PROGRESS;
-
-		level = 0;
-		nextLevel();
-	};
-
-	const stageClear = () => {
-		stop();
-
-		if(stage >= STAGES.length){
-			state = STATE.ATTACK_COMPLETE;
-		} else {
-			state = STATE.STAGE_CLEAR;
-			level = 0;
+		if(level > 0) {
+			seconds += stageSetting.timeBonus;
 		}
+
+		GameStore.createRandomLevel(stageSetting.name + " " + level, stageSetting.difficulty);
 	};
 
 	const stop = () => {
@@ -133,7 +86,7 @@
 
 	const gameOver = () => {
 		stop();
-		state = STATE.TIME_OUT;
+		state = GAME_STATE.LOSE;
 	};
 
 	onDestroy(() => {
@@ -145,43 +98,48 @@
 		GameStore.restoreLevel();
 	};
 
-	nextStage();
+	const startOverdrive = () => {
+		isOverdrive = true;
+		level = 0;
+		startGame();
+	};
+
+	startGame();
 </script>
 
-<h3 class="center on-background-text" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>
+<!--<h3 class="center on-background-text" class:red={seconds < 5} class:green={seconds > 10}>Time: {seconds}s</h3>-->
 
-{#if state === STATE.ATTACK_COMPLETE}
+{#if state === GAME_STATE.WIN}
 	<!--VICTORY-->
-
-	<h1 class="center green on-background-text">Congrats</h1>
-	<h3 class="center on-background-text">You can be proud of yourself</h3>
-	<Button colorScheme="orange" size="medium" on:click={() => router.navigate("")}>Go home</Button>
-{:else if state === STATE.IN_PROGRESS}
-	<!--IN PROGRESS-->
-
-	<SimpleGame on:restart={onRestart} title={$GameStore.title} />
-{:else if state === STATE.STAGE_CLEAR}
-	<!--STAGE CLEAR-->
-
-	<h1 class="center green on-background-text">Stage clear</h1>
-
 	<Column>
-		<h3 class="center">{STAGES[stage].messages.success}</h3>
-		<Separator />
-		<ProgressBar fill={stage+1} max={STAGES.length} />
-		<Separator />
+		<h1 class="center green on-background-text">Congrats</h1>
+		{#if isOverdrive}
+			<h3 class="center on-background-text">Wow man, good overdrive.</h3>
+		{:else}
+			<h3 class="center on-background-text">You can be proud of yourself</h3>
+		{/if}
 	</Column>
 
-	<Button on:click={nextStage} size="medium" colorScheme="green">Next stage</Button>
-{:else if state === STATE.TIME_OUT}
+	{#if !isOverdrive && seconds > 5}
+		<Button colorScheme="green" size="medium" on:click={startOverdrive}>OVERDRIVE</Button>
+		<Separator />
+	{/if}
+
+	<Button colorScheme="red" size="medium" on:click={() => router.navigate("")}>Go home</Button>
+{:else if state === GAME_STATE.IN_PROGRESS}
+	<!--IN PROGRESS-->
+	<ProgressBar fill={level} max={maxLevels} />
+
+	<SimpleGame on:restart={onRestart} title={`Stage ${level+1}: ${seconds}s`} />
+{:else if state === GAME_STATE.LOSE}
 	<!--TIME OUT-->
 
-	<h1 class="center red on-background-text">Game over</h1>
+	<ProgressBar fill={level} max={maxLevels} />
 
 	<Column>
-		<h3 class="center">{STAGES[stage].messages.fail}</h3>
+		<h1 class="center red on-background-text">Game over</h1>
 		<Separator />
-		<ProgressBar fill={stage} max={STAGES.length} />
+		<h3 class="center">{getRandomFailMessage(level, isOverdrive)}</h3>
 		<Separator />
 	</Column>
 
