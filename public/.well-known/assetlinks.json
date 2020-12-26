@@ -1,5 +1,14 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target" : { "namespace": "android_app", "package_name": "tech.oleksandrdemian.zero.twa",
-                   "sha256_cert_fingerprints": ["A0:CC:5A:16:65:87:EA:A6:E5:0C:A7:2A:03:5D:07:53:76:F1:3C:82:4D:97:59:3C:A2:DD:3C:0F:40:12:66:EC"] }
-    }]
+[
+	{
+		"relation": [
+			"delegate_permission/common.handle_all_urls"
+		],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "tech.oleksandrdemian.zero.twa",
+			"sha256_cert_fingerprints": [
+				"CE:6C:F0:0B:4F:A0:73:F9:B5:64:19:0F:F6:9D:F6:85:68:6F:FB:4D:80:C2:C1:97:D1:7F:E3:4B:B0:23:7F:05"
+			]
+		}
+	}
+]
