@@ -13,7 +13,7 @@
 	<ul>
 		<li>Play offline</li>
 		<li>Fullscreen mode</li>
-		<li>Lunch from menu</li>
+		<li>Launch from the menu</li>
 	</ul>
 </div>
 
