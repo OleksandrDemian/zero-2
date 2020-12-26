@@ -1,4 +1,4 @@
-<span>Version: 0.4.4-alpha</span>
+<span>Version: 0.5.0</span>
 
 <style>
 	span {
